@@ -216,74 +216,67 @@ Model generate() {
   final groups = [];
   var r;
 
-  r = [100];
+  r = [5000];
   groups.add(new Group(
       generateTree(1, r, [skip]),
       transformers.map((t) => generateTree(1, r, [t])).toList(),
-      transformerNames.map((n) => '#1 $r [$n]').toList()
-      ));
-
-  r = [1000];
-  groups.add(new Group(
-      generateTree(1, r, [skip]),
-      transformers.map((t) => generateTree(1, r, [t])).toList(),
-      transformerNames.map((n) => '#1 $r [$n]').toList()
+      transformerNames.map((n) => '$r [$n]').toList()
       ));
 
   r = [100, 50];
   groups.add(new Group(
       generateTree(2, r, [skip, skip]),
       transformers.map((t) => generateTree(2, r, [t, skip])).toList(),
-      transformerNames.map((n) => '#2 $r [$n, skip]').toList()
+      transformerNames.map((n) => '$r [$n, skip]').toList()
       ));
 
   r = [1000, 5];
   groups.add(new Group(
       generateTree(2, r, [skip, skip]),
       transformers.map((t) => generateTree(2, r, [t, skip])).toList(),
-      transformerNames.map((n) => '#2 $r [$n, skip]').toList()
+      transformerNames.map((n) => '$r [$n, skip]').toList()
       ));
 
   r = [100, 50];
   groups.add(new Group(
       generateTree(2, r, [skip, skip]),
       transformers.map((t) => generateTree(2, r, [skip, t])).toList(),
-      transformerNames.map((n) => '#2 $r [skip, $n]').toList()
+      transformerNames.map((n) => '$r [skip, $n]').toList()
       ));
 
   r = [1000, 5];
   groups.add(new Group(
       generateTree(2, r, [skip, skip]),
       transformers.map((t) => generateTree(2, r, [skip, t])).toList(),
-      transformerNames.map((n) => '#2 $r [skip, $n]').toList()
+      transformerNames.map((n) => '$r [skip, $n]').toList()
       ));
 
-  r = [100, 10, 5];
+  r = [50, 10, 5];
   groups.add(new Group(
       generateTree(3, r, [skip, skip, skip]),
       transformers.map((t) => generateTree(3, r, [t, skip, skip])).toList(),
-      transformerNames.map((n) => '#3 $r [$n, skip, skip]').toList()
+      transformerNames.map((n) => '$r [$n, skip, skip]').toList()
       ));
 
-  r = [1000, 5, 1];
+  r = [500, 5, 1];
   groups.add(new Group(
       generateTree(3, r, [skip, skip, skip]),
       transformers.map((t) => generateTree(3, r, [t, skip, skip])).toList(),
-      transformerNames.map((n) => '#3 $r [$n, skip, skip]').toList()
+      transformerNames.map((n) => '$r [$n, skip, skip]').toList()
       ));
 
-  r = [100, 10, 5];
+  r = [50, 10, 5];
   groups.add(new Group(
       generateTree(3, r, [skip, skip, skip]),
       transformers.map((t) => generateTree(3, r, [skip, skip, t])).toList(),
-      transformerNames.map((n) => '#3 $r [skip, skip, $n]').toList()
+      transformerNames.map((n) => '$r [skip, skip, $n]').toList()
       ));
 
-  r = [1000, 5, 1];
+  r = [500, 5, 1];
   groups.add(new Group(
       generateTree(3, r, [skip, skip, skip]),
       transformers.map((t) => generateTree(3, r, [skip, skip, t])).toList(),
-      transformerNames.map((n) => '#3 $r [skip, skip, $n]').toList()
+      transformerNames.map((n) => '$r [skip, skip, $n]').toList()
       ));
 
   return new Model(groups);

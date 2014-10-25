@@ -4,5 +4,3 @@ dependencies:
   browser: any
   vdom:
     path: ../vdom
-  vsync:
-    path: ../vsync

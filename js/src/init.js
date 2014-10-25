@@ -68,6 +68,12 @@ function runBenchmark(benchmark) {
 
       var benchmarkInstance = new benchmark(a, b, VDomBenchmark.details.containerElement);
 
+      // warmup
+      benchmarkInstance.setUp();
+      benchmarkInstance.render();
+      benchmarkInstance.update();
+      benchmarkInstance.tearDown();
+
       var r = new Result();
       for (var j = 0; j < 3; j++) {
         benchmarkInstance.setUp();
@@ -75,12 +81,12 @@ function runBenchmark(benchmark) {
         var t0 = window.performance.now();
         benchmarkInstance.render();
         var t1 = window.performance.now();
-        r.renderTime = (t1 - t0) * 1000;
+        r.renderTime += (t1 - t0) * 1000;
 
         t0 = window.performance.now();
         benchmarkInstance.update();
         t1 = window.performance.now();
-        r.updateTime = (t1 - t0) * 1000;
+        r.updateTime += (t1 - t0) * 1000;
 
         benchmarkInstance.tearDown();
       }
