@@ -1,6 +1,7 @@
 # Virtual DOM diff/patch benchmark
 
-Comparing performance of the different virtual dom libraries:
+Comparing performance of the diff/patch operations in different
+virtual dom libraries.
 
 - [VDom](https://github.com/localvoid/vdom) (Dart)
 - [React](http://facebook.github.io/react/) (JavaScript)
