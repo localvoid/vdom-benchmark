@@ -1,0 +1,8 @@
+name: vdom_benchmark
+description: A sample web application
+dependencies:
+  browser: any
+  vdom:
+    path: ../vdom
+  vsync:
+    path: ../vsync

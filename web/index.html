@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Virtual Dom benchmark</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <style>
+
+  </style>
+</head>
+<body>
+  <div id="data"></div>
+  <div id="buttons">
+    <button id="runVDomDart">VDom[Dart]</button>
+    <button id="runVSyncDart">VSync[Dart]</button>
+    <button id="runReactJs">React[js]</button>
+    <button id="runMithrilJs">Mithril[js]</button>
+    <button id="runVirtualDomJs">VirtualDom[js]</button>
+  </div>
+  <table class="table" id="results">
+    <thead></thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="http://fb.me/react-0.11.2.min.js"></script>
+  <script src="js/main.js"></script>
+  <script async type="application/dart" src="index.dart"></script>
+  <script async src="packages/browser/dart.js"></script>
+</body>
+</html>
+
