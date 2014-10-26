@@ -1,13 +1,13 @@
-var VDomBenchmark = require('./src/init');
+global.VDomBenchmark = require('./src/init');
 
 global.benchmarks = {
-  React: function(a, b, c) {
-    return VDomBenchmark.runBenchmark(require('./src/react'), a, b, c);
+  React: function(i) {
+    return VDomBenchmark.runBenchmark(require('./src/react'), i);
   },
-  Mithril: function(a, b, c) {
-    return VDomBenchmark.runBenchmark(require('./src/mithril'), a, b, c);
+  Mithril: function(i) {
+    return VDomBenchmark.runBenchmark(require('./src/mithril'), i);
   },
-  VirtualDom: function(a, b, c) {
-    return VDomBenchmark.runBenchmark(require('./src/virtual-dom'), a, b, c);
+  VirtualDom: function(i) {
+    return VDomBenchmark.runBenchmark(require('./src/virtual-dom'), i);
   }
 };

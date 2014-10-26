@@ -7,6 +7,18 @@ import 'package:vdom_benchmark/vdom.dart' as vdom;
 
 final contestants = ['VDom', 'React', 'Mithril', 'VirtualDom'];
 
+void initJS(g.Model model) {
+  final groups = model.groups;
+  for (final g in groups) {
+    final a = new js.JsObject.jsify(g.a.map((i) => i.toJson()).toList());
+    final bs = new js.JsObject.jsify(g.bs.map((k) => k.map((i) => i.toJson()).toList()).toList());
+    final names = new js.JsObject.jsify(g.names);
+    js.context['VDomBenchmark'].callMethod('pushGroup', [a, bs, names]);
+  }
+
+  js.context['VDomBenchmark'].callMethod('init');
+}
+
 void main() {
   html.querySelector('#notification button').onClick.listen((_) {
     html.querySelector('#notification')..style.display = 'none';
@@ -14,6 +26,7 @@ void main() {
 
     new Future.delayed(new Duration()).then((_) {
       final model = g.generate();
+      initJS(model);
 
       html.querySelector('#generating-data')..style.display = 'none';
       html.querySelector('#benchmark')..style.display = 'block';
@@ -77,13 +90,20 @@ void main() {
         });
       }
 
-      jsBenchmark(name) {
-        return (a, b, c) {
-          final a2 = new js.JsObject.jsify(a.map((i) => i.toJson()).toList());
-          final b2 = new js.JsObject.jsify(b.map((i) => i.toJson()).toList());
-          final r = js.context['benchmarks'].callMethod(name, [a2, b2, c.id]);
-          return new Result(r['renderTime'], r['updateTime']);
-        };
+      runJsBenchmark(name) {
+        setStateRunning(true);
+
+        return new Future.delayed(new Duration()).then((_) {
+          var i = 0;
+          return Future.forEach(model.tests, (test) {
+            final result = js.context['benchmarks'].callMethod(name, [i]);
+            updateResults(name, i, new Result(result['renderTime'], result['updateTime']));
+            i++;
+            return new Future.delayed(new Duration());
+          });
+        }).then((_) {
+          setStateRunning(false);
+        });
       }
 
       html.querySelector('#runVDomDart').onClick.listen((_) {
@@ -91,15 +111,15 @@ void main() {
       });
 
       html.querySelector('#runReactJs').onClick.listen((_) {
-        runBenchmark('React', jsBenchmark('React'));
+        runJsBenchmark('React');
       });
 
       html.querySelector('#runMithrilJs').onClick.listen((_) {
-        runBenchmark('Mithril', jsBenchmark('Mithril'));
+        runJsBenchmark('Mithril');
       });
 
       html.querySelector('#runVirtualDomJs').onClick.listen((_) {
-        runBenchmark('VirtualDom', jsBenchmark('VirtualDom'));
+        runJsBenchmark('VirtualDom');
       });
 
     });
