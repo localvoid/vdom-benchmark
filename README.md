@@ -9,3 +9,11 @@ dom libraries.
 - [VirtualDom](https://github.com/Matt-Esch/virtual-dom) (JavaScript)
 
 ## [Run benchmark](http://localvoid.github.io/vdom-benchmark/)
+
+## Build instructions
+
+```sh
+$ node install
+$ NODE_ENV=production gulp
+$ pub build --mode=release
+```
