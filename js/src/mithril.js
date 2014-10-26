@@ -5,9 +5,9 @@ function mithrilBuildTree(nodes) {
   for (var i = 0; i < nodes.length; i++) {
     var n = nodes[i];
     if (n.container === true) {
-      children.push(m('div', {key: n.key}, mithrilBuildTree(n.children)));
+      children.push({tag: 'div', attrs: {key: n.key}, children: mithrilBuildTree(n.children)});
     } else {
-      children.push(m('span', {key: n.key}, n.key.toString()));
+      children.push({tag: 'span', attrs: {key: n.key}, children: n.key.toString()});
     }
   }
   return children;
@@ -29,11 +29,11 @@ Benchmark.prototype.tearDown = function() {
 };
 
 Benchmark.prototype.render = function() {
-  m.render(this._container, m('div', {key: 0}, mithrilBuildTree(this._a)));
+  m.render(this._container, {tag: 'div', attrs: {key: 0}, children: mithrilBuildTree(this._a)});
 };
 
 Benchmark.prototype.update = function() {
-  m.render(this._container, m('div', {key: 0}, mithrilBuildTree(this._b)));
+  m.render(this._container, {tag: 'div', attrs: {key: 0}, children: mithrilBuildTree(this._b)});
 };
 
 module.exports = Benchmark;
