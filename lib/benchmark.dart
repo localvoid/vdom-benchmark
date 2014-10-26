@@ -3,8 +3,10 @@ library vdom_benchmark.benchmark;
 import 'dart:html' as html;
 
 class Result {
-  double renderTime = 0.0;
-  double updateTime = 0.0;
+  double renderTime;
+  double updateTime;
+
+  Result([this.renderTime = 0.0, this.updateTime = 0.0]);
 
   void avg(int n) {
     renderTime /= n;

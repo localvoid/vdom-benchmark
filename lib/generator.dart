@@ -38,10 +38,23 @@ class Group {
   }
 }
 
+class Test {
+  final List<Node> a;
+  final List<Node> b;
+  Test(this.a, this.b);
+}
+
 class Model {
   final List<Group> groups;
+  List<Test> tests = [];
 
-  Model(this.groups);
+  Model(this.groups) {
+    for (final g in groups) {
+      for (final b in g.bs) {
+        tests.add(new Test(g.a, b));
+      }
+    }
+  }
 
   List toJson() {
     return groups.map((g) => g.toJson()).toList();

@@ -1,108 +1,107 @@
+import 'dart:async';
 import 'dart:html' as html;
-import 'dart:js';
+import 'dart:js' as js;
+import 'package:vdom_benchmark/benchmark.dart';
 import 'package:vdom_benchmark/generator.dart' as g;
 import 'package:vdom_benchmark/vdom.dart' as vdom;
 
-final contestants = ['VDom[Dart]', 'React[js]', 'Mithril[js]', 'VirtualDom[js]'];
-
-// upload to data to javascript
-void initJS(g.Model model) {
-  final groups = model.groups;
-  for (final g in groups) {
-    final a = new JsObject.jsify(g.a.map((i) => i.toJson()).toList());
-    final bs = new JsObject.jsify(g.bs.map((k) => k.map((i) => i.toJson()).toList()).toList());
-    final names = new JsObject.jsify(g.names);
-    context['VDomBenchmark'].callMethod('pushGroup', [a, bs, names]);
-  }
-
-  context['VDomBenchmark'].callMethod('init');
-}
+final contestants = ['VDom', 'React', 'Mithril', 'VirtualDom'];
 
 void main() {
   html.querySelector('#notification button').onClick.listen((_) {
-    final model = g.generate();
-    initJS(model);
-
     html.querySelector('#notification')..style.display = 'none';
-    html.querySelector('#benchmark')..style.display = 'block';
+    html.querySelector('#generating-data')..style.display = 'block';
 
-    final vdomRunButton = html.querySelector('#runVDomDart');
-    final reactJsRunButton = html.querySelector('#runReactJs');
-    final mithrilJsRunButton = html.querySelector('#runMithrilJs');
-    final virtualDomJsRunButton = html.querySelector('#runVirtualDomJs');
+    new Future.delayed(new Duration()).then((_) {
+      final model = g.generate();
 
-    final container = html.querySelector('#data');
-    final resultsHead = html.querySelector('#results > thead');
-    final resultsBody = html.querySelector('#results > tbody');
+      html.querySelector('#generating-data')..style.display = 'none';
+      html.querySelector('#benchmark')..style.display = 'block';
 
-    // print results table
-    final contestantsRow = new html.TableRowElement();
-    contestantsRow.append(new html.Element.th());
-    for (final c in contestants) {
-      contestantsRow.append(new html.Element.th()..text = c);
-    }
-    resultsHead.append(contestantsRow);
+      final container = html.querySelector('#data');
+      final resultsHead = html.querySelector('#results > thead');
+      final resultsBody = html.querySelector('#results > tbody');
+      final runningOverlay = html.querySelector('#running');
 
-    for (final g in model.groups) {
-      for (var i = 0; i < g.bs.length; i++) {
-        final b = g.bs[i];
-        final name = g.names[i];
-        final row = new html.TableRowElement();
-        row.addCell()..append(new html.Element.tag('code')..text = name);
-        for (var i = 0; i < contestants.length; i++) {
-          row.addCell();
-        }
-        resultsBody.append(row);
+      // print results table
+      final contestantsRow = new html.TableRowElement();
+      contestantsRow.append(new html.Element.th());
+      for (final c in contestants) {
+        contestantsRow.append(new html.Element.th()..text = c);
       }
-    }
+      resultsHead.append(contestantsRow);
 
-    runBenchmark(pos, name, fn) {
-      var i = 0;
-      final results = [];
       for (final g in model.groups) {
-        final a = g.a;
-        final bs = g.bs;
-        for (final b in bs) {
-          results.add(fn(a, b, container).report());
+        for (var i = 0; i < g.bs.length; i++) {
+          final b = g.bs[i];
+          final name = g.names[i];
+          final row = new html.TableRowElement();
+          row.addCell()..append(new html.Element.tag('code')..text = name);
+          for (var i = 0; i < contestants.length; i++) {
+            row.addCell();
+          }
+          resultsBody.append(row);
         }
       }
 
-      for (final result in results) {
-        final cell = resultsBody.childNodes[i++].childNodes[pos + 1];
+      setStateRunning(v) {
+        if (v) {
+          runningOverlay.style.display = 'block';
+        } else {
+          runningOverlay.style.display = 'none';
+        }
+      }
+
+      updateResults(name, testNum, result) {
+        final pos = contestants.indexOf(name);
+        final cell = resultsBody.childNodes[testNum].childNodes[pos + 1];
         cell.children.clear();
         cell
         ..append(new html.DivElement()..text = result.renderTime.toStringAsFixed(3))
         ..append(new html.DivElement()..text = result.updateTime.toStringAsFixed(3));
       }
-    }
 
-    runJsBenchmark(pos, name) {
-      var i = 0;
-      final results = context['benchmarks'].callMethod(name);
+      runBenchmark(name, fn) {
+        setStateRunning(true);
 
-      for (final result in results) {
-        final cell = resultsBody.childNodes[i++].childNodes[pos + 1];
-        cell.children.clear();
-        cell
-        ..append(new html.DivElement()..text = result['renderTime'].toStringAsFixed(3))
-        ..append(new html.DivElement()..text = result['updateTime'].toStringAsFixed(3));
+        return new Future.delayed(new Duration()).then((_) {
+          var i = 0;
+          return Future.forEach(model.tests, (test) {
+            final result = fn(test.a, test.b, container);
+            updateResults(name, i, result);
+            i++;
+            return new Future.delayed(new Duration());
+          });
+        }).then((_) {
+          setStateRunning(false);
+        });
       }
-    }
 
-    vdomRunButton.onClick.listen((_) {
-      runBenchmark(0, 'VDom', (a, b, c) => new vdom.Benchmark(a, b, c));
-    });
+      jsBenchmark(name) {
+        return (a, b, c) {
+          final a2 = new js.JsObject.jsify(a.map((i) => i.toJson()).toList());
+          final b2 = new js.JsObject.jsify(b.map((i) => i.toJson()).toList());
+          final r = js.context['benchmarks'].callMethod(name, [a2, b2, c.id]);
+          return new Result(r['renderTime'], r['updateTime']);
+        };
+      }
 
-    reactJsRunButton.onClick.listen((_) {
-      runJsBenchmark(1, 'React');
-    });
+      html.querySelector('#runVDomDart').onClick.listen((_) {
+        runBenchmark('VDom', (a, b, c) => new vdom.Benchmark(a, b, c).report());
+      });
 
-    mithrilJsRunButton.onClick.listen((_) {
-      runJsBenchmark(2, 'Mithril');
-    });
+      html.querySelector('#runReactJs').onClick.listen((_) {
+        runBenchmark('React', jsBenchmark('React'));
+      });
 
-    virtualDomJsRunButton.onClick.listen((_) {
-      runJsBenchmark(3, 'VirtualDom');
+      html.querySelector('#runMithrilJs').onClick.listen((_) {
+        runBenchmark('Mithril', jsBenchmark('Mithril'));
+      });
+
+      html.querySelector('#runVirtualDomJs').onClick.listen((_) {
+        runBenchmark('VirtualDom', jsBenchmark('VirtualDom'));
+      });
+
     });
   });
 }
