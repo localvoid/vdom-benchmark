@@ -6,7 +6,19 @@
   <title>Virtual Dom benchmark</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <style>
-
+  #buttons {
+    position: relative;
+  }
+  #running {
+    z-index: 10;
+    text-align: center;
+    font-size: 24px;
+    line-height: 48px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.7);
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+  }
   </style>
 </head>
 <body>
@@ -23,9 +35,14 @@
       <button class="btn btn-danger" id="startButton">Proceed</button>
     </div>
 
+    <div class="row" id="generating-data" style="display: none">
+      <p>Generating benchmark data...</p>
+    </div>
+
     <div id="benchmark" style="display: none">
 
-    <div class="row">
+    <div class="row" id="buttons">
+      <div id="running" style="display: none">Running...</div>
       <div class="col-md-3">
         <h2><a href="https://github.com/localvoid/vdom">VDom</a> <small>0.3.1</small> <small><mark>Dart</mark></small></h2>
         <p><a href="https://github.com/localvoid/vdom-benchmark/blob/master/lib/vdom.dart">Source Code</a></p>
