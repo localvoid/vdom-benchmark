@@ -41,12 +41,10 @@ Benchmark.prototype.tearDown = function() {
 Benchmark.prototype.render = function() {
   var v = new ReactView({nodes: this._a});
   this._view = React.renderComponent(v, this._container);
-  ReactUpdates.flushBatchedUpdates();
 };
 
 Benchmark.prototype.update = function() {
   this._view.setState({nodes: this._b});
-  ReactUpdates.flushBatchedUpdates();
 };
 
 module.exports = Benchmark;
