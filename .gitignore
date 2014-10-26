@@ -24,5 +24,6 @@ packages
 .DS_Store
 
 # JavaScript
+web/js/*
 node_modules/
 .tern-port
