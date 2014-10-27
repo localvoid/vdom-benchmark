@@ -12,14 +12,32 @@
 
   #running {
     z-index: 10;
-    text-align: center;
-    font-size: 24px;
-    line-height: 48px;
     position: absolute;
     background: rgba(255, 255, 255, 0.7);
     top: 0; bottom: 0;
     left: 0; right: 0;
-    transition: background 2s;
+  }
+
+  .results-chart {
+    width: 100%;
+  }
+
+  .results-chart .name {
+    width: 100px;
+    padding-right: 10px;
+    text-align: right;
+    border-right: 1px solid #333;
+  }
+
+  .results-chart .bar {
+    display: inline-block;
+    height: 12px;
+  }
+  .results-chart .render-time {
+    background: #428bca;
+  }
+  .results-chart .update-time {
+    background: #5cb85c;
   }
   </style>
 </head>
@@ -92,6 +110,9 @@
             <tbody></tbody>
           </table>
         </div>
+      </div>
+
+      <div id="results-charts">
       </div>
 
     </div>
