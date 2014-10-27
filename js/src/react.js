@@ -14,15 +14,6 @@ function reactBuildTree(nodes) {
   return children;
 }
 
-var ReactView = React.createClass({
-  getInitialState: function() {
-    return {nodes: this.props.nodes};
-  },
-  render: function() {
-    return React.DOM.div({}, reactBuildTree(this.state.nodes));
-  }
-});
-
 function Benchmark(a, b, container) {
   this._a = a;
   this._b = b;
@@ -35,16 +26,14 @@ Benchmark.prototype.setUp = function() {};
 
 Benchmark.prototype.tearDown = function() {
   React.unmountComponentAtNode(this._container);
-  ReactUpdates.flushBatchedUpdates();
 };
 
 Benchmark.prototype.render = function() {
-  var v = new ReactView({nodes: this._a});
-  this._view = React.renderComponent(v, this._container);
+  React.renderComponent(React.DOM.div({key: 0}, reactBuildTree(this._a)), this._container);
 };
 
 Benchmark.prototype.update = function() {
-  this._view.setState({nodes: this._b});
+  React.renderComponent(React.DOM.div({key: 0}, reactBuildTree(this._b)), this._container);
 };
 
 module.exports = Benchmark;
