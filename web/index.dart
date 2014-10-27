@@ -76,6 +76,25 @@ class Application {
     }
   }
 
+  void renderResultsCharts() {
+    final results = html.querySelector('#results-charts');
+
+    for (final t in model.tests) {
+      final panel = new html.DivElement()..classes.addAll(const ['panel', 'panel-default']);
+      final head = new html.DivElement()..classes.add('panel-heading')..append(new html.Element.tag('code')..text = t.name);
+      final body = new html.DivElement()..classes.add('panel-body');
+      final table = new html.TableElement()..classes.add('results-chart');
+      for (final c in contestants) {
+        final row = table.addRow();
+        row.addCell()..classes.add('name')..text = c;
+        row.addCell()..classes.add('bars');
+      }
+
+      results.append(new html.DivElement()..classes.add('row')..append(panel..append(head)..append(body..append(table))));
+    }
+  }
+
+
   void toggleButtons(bool v) {
     html.querySelector('#running').style.display = v ? 'none': '';
   }
@@ -100,6 +119,27 @@ class Application {
     r.enter.append('div').textWithCallback((d, i, e) => d.toStringAsFixed(1));
     r.exit.remove();
   }
+
+  void updateResultsCharts() {
+    final m = max(results.data.map((r) => max(r.where((i) => i != null).map((i) => i.fullTime))));
+    final scale = new LinearScale([0, m], [0, 100]);
+
+    final rows = new SelectionScope.selector('#results-charts').selectAll('.results-chart').data(results.data);
+
+    final cells = rows.selectAll('.bars').dataWithCallback((d, i, e) => d);
+    final bars = cells.selectAll('.bar').dataWithCallback((d, i, e) => d == null ? [] : [d.renderTime, d.updateTime])
+    ..styleWithCallback('width', (d, i, e) => '${scale.apply(d)}%')
+    ..attrWithCallback('title', (d, i, e) => d.toStringAsFixed(1));
+
+    bars.enter.append('div')
+    ..classed('bar')
+    ..classedWithCallback('render-time', (d, i, e) => i == 0)
+    ..classedWithCallback('update-time', (d, i, e) => i == 1)
+    ..styleWithCallback('width', (d, i, e) => '${scale.apply(d)}%')
+    ..attrWithCallback('title', (d, i, e) => d.toStringAsFixed(1));
+
+    bars.exit.remove();
+  }
 }
 
 void main() {
@@ -111,6 +151,7 @@ void main() {
       app.initJS();
       app.setState('ready');
       app.renderResultsTable();
+      app.renderResultsCharts();
 
       final benchmarkDataContainer = html.querySelector(benchmarkDataSelector);
 
@@ -126,6 +167,7 @@ void main() {
             return new Future.delayed(new Duration());
           });
         }).then((_) {
+          app.updateResultsCharts();
           app.toggleButtons(true);
         });
       }
@@ -142,6 +184,7 @@ void main() {
             return new Future.delayed(new Duration());
           });
         }).then((_) {
+          app.updateResultsCharts();
           app.toggleButtons(true);
         });
       }

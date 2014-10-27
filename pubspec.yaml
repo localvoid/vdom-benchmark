@@ -4,4 +4,4 @@ dependencies:
   browser: any
   charted: any
   vdom:
-    path: ../vdom
+    git: git://github.com:localvoid/vdom.git
