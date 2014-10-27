@@ -39,9 +39,10 @@ class Group {
 }
 
 class Test {
+  final String name;
   final List<Node> a;
   final List<Node> b;
-  Test(this.a, this.b);
+  Test(this.name, this.a, this.b);
 }
 
 class Model {
@@ -50,8 +51,8 @@ class Model {
 
   Model(this.groups) {
     for (final g in groups) {
-      for (final b in g.bs) {
-        tests.add(new Test(g.a, b));
+      for (var i = 0; i < g.bs.length; i++) {
+        tests.add(new Test(g.names[i], g.a, g.bs[i]));
       }
     }
   }

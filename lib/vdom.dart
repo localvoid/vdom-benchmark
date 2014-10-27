@@ -26,7 +26,7 @@ class Benchmark extends BenchmarkBase {
   v.Element _vRoot;
   html.Element _root;
 
-  Benchmark(this.a, this.b, this._container);
+  Benchmark(this.a, this.b, this._container) : super('VDom');
 
   void render() {
     _vRoot = new v.Element(0, 'div', vdomBuildTree(a));

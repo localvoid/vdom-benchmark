@@ -55,9 +55,9 @@ function pushGroup(a, bs, names) {
   model.pushGroup(convertToNative(a), bs2, names);
 }
 
-function init() {
+function init(benchmarkDataSelector) {
   model.buildTests();
-  containerElement = document.getElementById('data');
+  containerElement = document.querySelector(benchmarkDataSelector);
 }
 
 function Result() {

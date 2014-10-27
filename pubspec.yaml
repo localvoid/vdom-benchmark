@@ -2,5 +2,6 @@ name: vdom_benchmark
 description: A sample web application
 dependencies:
   browser: any
+  charted: any
   vdom:
     path: ../vdom
