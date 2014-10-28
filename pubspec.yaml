@@ -4,4 +4,6 @@ dependencies:
   browser: any
   charted: any
   vdom:
-    git: git://github.com/localvoid/vdom.git
+    git://github.com/localvoid/vdom.git
+  vcomponent:
+    git://github.com/localvoid/vcomponent.git

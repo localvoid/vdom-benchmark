@@ -3,10 +3,10 @@ import 'dart:html' as html;
 import 'dart:js' as js;
 import 'package:vdom_benchmark/benchmark.dart';
 import 'package:vdom_benchmark/generator.dart' as g;
-import 'package:vdom_benchmark/vdom.dart' as vdom;
+import 'package:vdom_benchmark/vcomponent.dart' as vc;
 import 'package:vdom_benchmark/app.dart';
 
-const contestants = const ['React'];
+const contestants = const ['VComponent', 'React'];
 
 g.Model generateTests() {
   final groups = [];
@@ -23,6 +23,13 @@ g.Model generateTests() {
       g.generateTree(r, [g.skip, g.skip]),
       [g.generateTree(r, [g.markDirtyAll, (c) => g.advanceKey(c, 5000)])],
       ['$r [markDirtyAll, advanceKey(5000)]']));
+
+  r = [5000];
+  groups.add(new g.Group(
+      g.generateTree(r, [g.skip]),
+      g.transformers.map((t) => g.generateTree(r, [t])).toList(),
+      g.transformerNames.map((n) => '$r [$n]').toList()
+      ));
 
   return new g.Model(groups);
 }
@@ -73,6 +80,10 @@ void main() {
           app.toggleButtons(true);
         });
       }
+
+      html.querySelector('#runVComponentDart').onClick.listen((_) {
+        runBenchmark('VComponent', (a, b, c) => new vc.Benchmark(a, b, c).report());
+      });
 
       html.querySelector('#runReactJs').onClick.listen((_) {
         runJsBenchmark('React');
