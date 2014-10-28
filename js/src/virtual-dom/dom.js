@@ -8,7 +8,7 @@ function virtualDomBuildTree(nodes) {
   var children = [];
   for (var i = 0; i < nodes.length; i++) {
     var n = nodes[i];
-    if (n.container === true) {
+    if (n.children !== null) {
       children.push(new VNode('div', null, virtualDomBuildTree(n.children), n.key));
     } else {
       children.push(new VNode('span', null, [new VText(n.key.toString())], n.key));

@@ -1,7 +1,7 @@
-function Node(key, children, container) {
+function Node(key, dirty, children) {
   this.key = key;
+  this.dirty = dirty;
   this.children = children;
-  this.container = container;
 }
 
 function Group(a, bs, names) {
@@ -42,7 +42,7 @@ function convertToNative(nodes) {
   }
   var result = [];
   nodes.forEach(function(n) {
-    result.push(new Node(n.key, convertToNative(n.children), n.container));
+    result.push(new Node(n.key, n.dirty, convertToNative(n.children)));
   });
   return result;
 }
@@ -60,17 +60,13 @@ function init(benchmarkDataSelector) {
   containerElement = document.querySelector(benchmarkDataSelector);
 }
 
-function Result() {
-  this.renderTime = 0;
-  this.updateTime = 0;
+function Result(renderTime, updateTime) {
+  this.renderTime = renderTime;
+  this.updateTime = updateTime;
 }
 
-Result.prototype.avg = function(n) {
-  this.renderTime /= n;
-  this.updateTime /= n;
-};
-
 function runBenchmark(benchmark, i) {
+  var t0;
   var test = model.tests[i];
 
   var benchmarkInstance = new benchmark(test.a, test.b, containerElement);
@@ -81,28 +77,28 @@ function runBenchmark(benchmark, i) {
   benchmarkInstance.update();
   benchmarkInstance.tearDown();
 
-  var r = new Result();
+  var renderTime = 0.0;
+  var updateTime = 0.0;
+
   for (var j = 0; j < 3; j++) {
     benchmarkInstance.setUp();
 
-    var t0 = window.performance.now();
+    t0 = window.performance.now();
     benchmarkInstance.render();
-    var t1 = window.performance.now();
-    r.renderTime += (t1 - t0) * 1000;
+    renderTime += (window.performance.now() - t0) * 1000;
 
     t0 = window.performance.now();
     benchmarkInstance.update();
-    t1 = window.performance.now();
-    r.updateTime += (t1 - t0) * 1000;
+    updateTime += (window.performance.now() - t0) * 1000;
 
     benchmarkInstance.tearDown();
   }
-  r.avg(3);
 
-  return r;
+  return new Result(renderTime / 3, updateTime / 3);
 }
 
 module.exports = {
+  Node: Node,
   pushGroup: pushGroup,
   init: init,
   runBenchmark: runBenchmark

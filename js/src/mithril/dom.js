@@ -4,7 +4,7 @@ function mithrilBuildTree(nodes) {
   var children = [];
   for (var i = 0; i < nodes.length; i++) {
     var n = nodes[i];
-    if (n.container === true) {
+    if (n.children !== null) {
       children.push({tag: 'div', attrs: {key: n.key}, children: mithrilBuildTree(n.children)});
     } else {
       children.push({tag: 'span', attrs: {key: n.key}, children: n.key.toString()});
@@ -17,8 +17,6 @@ function Benchmark(a, b, container) {
   this._a = a;
   this._b = b;
   this._container = container;
-
-  this._module = null;
 }
 
 Benchmark.prototype.setUp = function() {

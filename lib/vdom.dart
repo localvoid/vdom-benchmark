@@ -9,7 +9,7 @@ List<v.Node> vdomBuildTree(List<g.Node> nodes) {
   final children = [];
   for (var i = 0; i < nodes.length; i++) {
     final n = nodes[i];
-    if (n.container) {
+    if (n.children != null) {
       children.add(new v.Element(n.key, 'div', vdomBuildTree(n.children)));
     } else {
       children.add(new v.Element(n.key, 'span', [new v.Text(0, n.key.toString())]));

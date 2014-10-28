@@ -1,25 +1,23 @@
-library vdom_benchmark.generator;
+library vcomponent.generator;
 
 import 'dart:math' as math;
 
 class Node {
   int key;
+  bool dirty;
   List<Node> children;
-  bool container = false;
 
-  Node(this.key, [List<Node> children = null])
-      : children = children,
-        container = (children != null);
-
-  String toString() => '<$key>${children != null ? children.join() : ''}</$key>';
+  Node(this.key, [this.dirty = false, this.children = null]);
 
   Map toJson() {
     return {
       'key': key,
+      'dirty': dirty,
       'children': children == null ? null : children.map((c) => c.toJson()).toList(),
-      'container': container
     };
   }
+
+  String toString() => '<$key>${children != null ? children.join() : ''}</$key>';
 }
 
 class Group {
@@ -181,6 +179,22 @@ void swapMiddle(List<Node> children) {
   }
 }
 
+void advanceKey(List<Node> children, int n) {
+  for (final c in children) {
+    c.key += n;
+  }
+}
+
+void markDirtyAll(List<Node> children) {
+  for (final c in children) {
+    c.dirty = true;
+  }
+}
+
+void markDirtyOne(List<Node> children, int i) {
+  children[i].dirty = true;
+}
+
 var random = new math.Random(0);
 
 List<TreeTransformer> transformers = [
@@ -209,8 +223,9 @@ List<String> transformerNames = [
     'swapBorders',
     'swapMiddle'];
 
-List<Node> generateTree(int levels, List<Node> itemsPerLevel,
+List<Node> generateTree(List<Node> itemsPerLevel,
     List<TreeTransformer> transformers, [int level = 0]) {
+  final levels = itemsPerLevel.length;
   final result = [];
   final itemsCount = itemsPerLevel[level];
   if (level == (levels - 1)) {
@@ -219,79 +234,9 @@ List<Node> generateTree(int levels, List<Node> itemsPerLevel,
     }
   } else {
     for (var i = 0; i < itemsCount; i++) {
-      result.add(new Node(i, generateTree(levels, itemsPerLevel, transformers, level + 1)));
+      result.add(new Node(i, false, generateTree(itemsPerLevel, transformers, level + 1)));
     }
   }
   transformers[level](result);
   return result;
-}
-
-Model generate() {
-  final groups = [];
-  var r;
-
-  r = [5000];
-  groups.add(new Group(
-      generateTree(1, r, [skip]),
-      transformers.map((t) => generateTree(1, r, [t])).toList(),
-      transformerNames.map((n) => '$r [$n]').toList()
-      ));
-
-  r = [100, 50];
-  groups.add(new Group(
-      generateTree(2, r, [skip, skip]),
-      transformers.map((t) => generateTree(2, r, [t, skip])).toList(),
-      transformerNames.map((n) => '$r [$n, skip]').toList()
-      ));
-
-  r = [1000, 5];
-  groups.add(new Group(
-      generateTree(2, r, [skip, skip]),
-      transformers.map((t) => generateTree(2, r, [t, skip])).toList(),
-      transformerNames.map((n) => '$r [$n, skip]').toList()
-      ));
-
-  r = [100, 50];
-  groups.add(new Group(
-      generateTree(2, r, [skip, skip]),
-      transformers.map((t) => generateTree(2, r, [skip, t])).toList(),
-      transformerNames.map((n) => '$r [skip, $n]').toList()
-      ));
-
-  r = [1000, 5];
-  groups.add(new Group(
-      generateTree(2, r, [skip, skip]),
-      transformers.map((t) => generateTree(2, r, [skip, t])).toList(),
-      transformerNames.map((n) => '$r [skip, $n]').toList()
-      ));
-
-  r = [50, 10, 5];
-  groups.add(new Group(
-      generateTree(3, r, [skip, skip, skip]),
-      transformers.map((t) => generateTree(3, r, [t, skip, skip])).toList(),
-      transformerNames.map((n) => '$r [$n, skip, skip]').toList()
-      ));
-
-  r = [500, 5, 1];
-  groups.add(new Group(
-      generateTree(3, r, [skip, skip, skip]),
-      transformers.map((t) => generateTree(3, r, [t, skip, skip])).toList(),
-      transformerNames.map((n) => '$r [$n, skip, skip]').toList()
-      ));
-
-  r = [50, 10, 5];
-  groups.add(new Group(
-      generateTree(3, r, [skip, skip, skip]),
-      transformers.map((t) => generateTree(3, r, [skip, skip, t])).toList(),
-      transformerNames.map((n) => '$r [skip, skip, $n]').toList()
-      ));
-
-  r = [500, 5, 1];
-  groups.add(new Group(
-      generateTree(3, r, [skip, skip, skip]),
-      transformers.map((t) => generateTree(3, r, [skip, skip, t])).toList(),
-      transformerNames.map((n) => '$r [skip, skip, $n]').toList()
-      ));
-
-  return new Model(groups);
 }
