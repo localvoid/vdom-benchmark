@@ -10,10 +10,25 @@ dom libraries.
 
 ## [Run benchmark](http://localvoid.github.io/vdom-benchmark/)
 
-## Build instructions
+## Dev
+
+### Dependencies
+
+- [Dart SDK](https://www.dartlang.org/tools/sdk/)
+- [Node.js](http://nodejs.org/)
+- [npm](https://www.npmjs.org/)
+- [gulp](http://gulpjs.com/)
+
+### Build instructions
 
 ```sh
-$ node install
+$ npm install
 $ NODE_ENV=production gulp
 $ pub build --mode=release
+```
+
+### Dev server
+
+```sh
+$ pub serve --mode=release
 ```
