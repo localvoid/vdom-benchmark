@@ -3,10 +3,10 @@ import 'dart:html' as html;
 import 'dart:js' as js;
 import 'package:vdom_benchmark/benchmark.dart';
 import 'package:vdom_benchmark/generator.dart' as g;
-import 'package:vdom_benchmark/vcomponent.dart' as vc;
+import 'package:vdom_benchmark/liquid.dart' as vc;
 import 'package:vdom_benchmark/app.dart';
 
-const contestants = const ['VComponent', 'React'];
+const contestants = const ['Liquid', 'React'];
 
 g.Model generateTests() {
   final groups = [];
@@ -81,8 +81,8 @@ void main() {
         });
       }
 
-      html.querySelector('#runVComponentDart').onClick.listen((_) {
-        runBenchmark('VComponent', (a, b, c) => new vc.Benchmark(a, b, c).report());
+      html.querySelector('#runLiquidDart').onClick.listen((_) {
+        runBenchmark('Liquid', (a, b, c) => new vc.Benchmark(a, b, c).report());
       });
 
       html.querySelector('#runReactJs').onClick.listen((_) {
