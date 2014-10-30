@@ -47,34 +47,6 @@ g.Model generateTests() {
       g.transformerNames.map((n) => '$r [skip, $n]').toList()
       ));
 
-  r = [50, 10, 5];
-  groups.add(new g.Group(
-      g.generateTree(r, [g.skip, g.skip, g.skip]),
-      g.transformers.map((t) => g.generateTree(r, [t, g.skip, g.skip])).toList(),
-      g.transformerNames.map((n) => '$r [$n, skip, skip]').toList()
-      ));
-
-  r = [500, 5, 1];
-  groups.add(new g.Group(
-      g.generateTree(r, [g.skip, g.skip, g.skip]),
-      g.transformers.map((t) => g.generateTree(r, [t, g.skip, g.skip])).toList(),
-      g.transformerNames.map((n) => '$r [$n, skip, skip]').toList()
-      ));
-
-  r = [50, 10, 5];
-  groups.add(new g.Group(
-      g.generateTree(r, [g.skip, g.skip, g.skip]),
-      g.transformers.map((t) => g.generateTree(r, [g.skip, g.skip, t])).toList(),
-      g.transformerNames.map((n) => '$r [skip, skip, $n]').toList()
-      ));
-
-  r = [500, 5, 1];
-  groups.add(new g.Group(
-      g.generateTree(r, [g.skip, g.skip, g.skip]),
-      g.transformers.map((t) => g.generateTree(r, [g.skip, g.skip, t])).toList(),
-      g.transformerNames.map((n) => '$r [skip, skip, $n]').toList()
-      ));
-
   return new g.Model(groups);
 }
 
