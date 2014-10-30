@@ -36,9 +36,9 @@ var NodeComponent = React.createClass({
       for (var i = 0; i < children.length; i++) {
         var c = children[i];
         if (c.children === null) {
-          result.push(LeafComponent({key: c.key, node: c}));
+          result.push(React.createElement(LeafComponent, {key: c.key, node: c}));
         } else {
-          result.push(NodeComponent({key: c.key, node: c}));
+          result.push(React.createElement(NodeComponent, {key: c.key, node: c}));
         }
       }
     }
@@ -59,11 +59,11 @@ Benchmark.prototype.tearDown = function() {
 };
 
 Benchmark.prototype.render = function() {
-  React.renderComponent(NodeComponent({node: new Node(0, false, this._a)}), this._container);
+  React.renderComponent(React.createElement(NodeComponent, {node: new Node(0, false, this._a)}), this._container);
 };
 
 Benchmark.prototype.update = function() {
-  React.renderComponent(NodeComponent({node: new Node(0, true, this._b)}), this._container);
+  React.renderComponent(React.createElement(NodeComponent, {node: new Node(0, true, this._b)}), this._container);
 };
 
 module.exports = Benchmark;
