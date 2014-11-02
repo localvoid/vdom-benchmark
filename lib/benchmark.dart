@@ -1,6 +1,7 @@
 library vdom_benchmark.benchmark;
 
 import 'dart:html' as html;
+import 'dart:math' as math;
 
 class Result {
   final double renderTime;
@@ -29,22 +30,22 @@ abstract class BenchmarkBase {
     update();
     teardown();
 
-    var renderTime = 0.0;
-    var updateTime = 0.0;
+    var renderTime = 1 << 31;
+    var updateTime = 1 << 31;
     for (var i = 0; i < 3; i++) {
       setup();
 
       var t0 = html.window.performance.now();
       render();
-      renderTime += (html.window.performance.now() - t0) * 1000;
+      renderTime = math.min((html.window.performance.now() - t0), renderTime);
 
       t0 = html.window.performance.now();
       update();
-      updateTime += (html.window.performance.now() - t0) * 1000;
+      updateTime = math.min((html.window.performance.now() - t0), updateTime);
 
       teardown();
     }
 
-    return new Result(renderTime / 3, updateTime / 3);
+    return new Result(renderTime * 1000, updateTime * 1000);
   }
 }

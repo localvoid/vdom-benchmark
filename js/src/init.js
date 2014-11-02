@@ -77,24 +77,24 @@ function runBenchmark(benchmark, i) {
   benchmarkInstance.update();
   benchmarkInstance.tearDown();
 
-  var renderTime = 0.0;
-  var updateTime = 0.0;
+  var renderTime = Number.MAX_VALUE;
+  var updateTime = Number.MAX_VALUE;
 
   for (var j = 0; j < 3; j++) {
     benchmarkInstance.setUp();
 
     t0 = window.performance.now();
     benchmarkInstance.render();
-    renderTime += (window.performance.now() - t0) * 1000;
+    renderTime = Math.min((window.performance.now() - t0), renderTime);
 
     t0 = window.performance.now();
     benchmarkInstance.update();
-    updateTime += (window.performance.now() - t0) * 1000;
+    updateTime = Math.min((window.performance.now() - t0), updateTime);
 
     benchmarkInstance.tearDown();
   }
 
-  return new Result(renderTime / 3, updateTime / 3);
+  return new Result(renderTime * 1000, updateTime * 1000);
 }
 
 module.exports = {
