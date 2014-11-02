@@ -6366,13 +6366,13 @@ m=z[g]}else m=-1
 j[r]=m}for(r=0;r<l;++r){h=k[r]
 g=j[r]
 if(g!==-1)b.insertBefore(h,g)
-else b.appendChild(h)}}if(u!=null)for(p=!c,r=0;r<u.length;++r){if(r>=v.length)return H.e(v,r)
+else b.appendChild(h)}}if(u!=null)for(r=0;r<u.length;++r){if(r>=v.length)return H.e(v,r)
 f=v[r]
 e=u[r]
-if(e!==z.length){n=f.Ww()
+if(e!==z.length){p=f.Ww()
 if(e>>>0!==e||e>=z.length)return H.e(z,e)
-b.insertBefore(n,z[e])}else b.appendChild(f.Ww())
-if(p)J.l6(f)}},
+b.insertBefore(p,z[e])}else b.appendChild(f.Ww())
+if(c)J.l6(f)}},
 Vy:{
 "^":"a;Rt,eh"},
 BW:{
@@ -6701,20 +6701,20 @@ this.Qe()
 this.Ww()
 this.Li()
 this.Dt()
-for(z=0,y=0,x=0;x<3;++x){this.Qe()
+for(z=2147483648,y=2147483648,x=0;x<3;++x){this.Qe()
 w=window.performance.now()
 this.Ww()
 v=window.performance.now()
 if(typeof v!=="number")return v.W()
 if(typeof w!=="number")return H.s(w)
-z+=(v-w)*1000
+z=P.J(v-w,z)
 w=window.performance.now()
 this.Li()
 v=window.performance.now()
 if(typeof v!=="number")return v.W()
 if(typeof w!=="number")return H.s(w)
-y+=(v-w)*1000
-this.Dt()}return new E.oe(z/3,y/3)}}}],["","",,E,{
+y=P.J(v-w,y)
+this.Dt()}return new E.oe(z*1000,y*1000)}}}],["","",,E,{
 "^":"",
 Q6:function(a){var z,y,x,w,v,u
 z=[]
