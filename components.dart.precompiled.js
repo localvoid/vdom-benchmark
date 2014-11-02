@@ -6303,8 +6303,8 @@ while(!0){if(!(w<b.length)){q=-1
 break}u=b[w]
 if(J.de(z.gPq(v),J.Cf(u))){q=w
 break}else{s.push(u)
-r.push(w)}++w}if(q!==-1){for(w=q+1;z=b.length,w<z;++w){s.push(b[w])
-r.push(w)}if(q<0||q>=z)return H.e(b,q)
+r.push(0)}++w}if(q!==-1){for(w=q+1;z=b.length,w<z;++w){s.push(b[w])
+r.push(-1)}if(q<0||q>=z)return H.e(b,q)
 p=v.yr(b[q])
 if(p!=null){o=[p]
 n=[0]}else{o=null
@@ -6337,21 +6337,21 @@ s.fixed$length=init
 r=Array(z)
 r.fixed$length=init
 for(w=0;w<z;++w){s[w]=b[w]
-r[w]=w}return new F.M1(null,null,null,s,r,null,null)}}return},
-dN:function(b0,b1){var z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9
+r[w]=-1}return new F.M1(null,null,null,s,r,null,null)}}return},
+dN:function(b2,b3){var z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,b0,b1
 z=H.VM([],[P.KN])
 y=H.VM([],[P.KN])
 x=H.VM([],[F.h8])
 w=H.VM([],[P.KN])
 v=H.VM([],[F.h8])
 u=H.VM([],[P.KN])
-t=b1.length
+t=b3.length
 s=P.O8(t,-1,P.KN)
-if(b0.length*b1.length<=16)for(r=!1,q=0,p=0,o=0,n=0;m=b0.length,n<m;++n){l=b0[n]
+if(b2.length*b3.length<=16)for(r=!1,q=0,p=0,o=0,n=0;m=b2.length,n<m;++n){l=b2[n]
 m=J.RE(l)
 j=0
-while(!0){if(!(j<b1.length)){k=!0
-break}i=b1[j]
+while(!0){if(!(j<b3.length)){k=!0
+break}i=b3[j]
 if(J.de(m.gPq(l),J.Cf(i))){if(j>=t)return H.e(s,j)
 s[j]=n-o
 if(p>j)r=!0
@@ -6361,56 +6361,57 @@ y.push(j)
 k=!1
 break}++j}if(k){x.push(l)
 w.push(n);++o;++q}}else{h=P.Py(null,null,null,P.a,P.KN)
-for(n=0;n<b1.length;++n)h.u(0,J.Cf(b1[n]),n)
-for(r=!1,q=0,p=0,o=0,n=0;m=b0.length,n<m;++n){g=b0[n]
+for(n=0;n<b3.length;++n)h.u(0,J.Cf(b3[n]),n)
+for(r=!1,q=0,p=0,o=0,n=0;m=b2.length,n<m;++n){g=b2[n]
 f=h.t(0,J.Cf(g))
-if(f!=null){if(f>>>0!==f||f>=b1.length)return H.e(b1,f)
+if(f!=null){if(f>>>0!==f||f>=b3.length)return H.e(b3,f)
 if(f>=t)return H.e(s,f)
 s[f]=n-o
 if(p>f)r=!0
 else p=f
 z.push(n)
 y.push(f)}else{x.push(g)
-w.push(n);++o;++q}}}if(r){m-=w.length
-e=P.O8(m,0,P.KN)
-for(d=0,n=0;n<b1.length;++n){c=b1[n]
+w.push(n);++o;++q}}}e=m-w.length
+if(r){d=P.O8(e,0,P.KN)
+for(c=0,n=0;n<b3.length;++n){b=b3[n]
 if(n>=t)return H.e(s,n)
-b=s[n]
-if(b===-1){v.push(c)
-u.push(n);++d;++q}else{a=n-d
-if(a<0||a>=m)return H.e(e,a)
-e[a]=b}}a0=F.j4(e)
+m=s[n]
+a=n-c
+if(m===-1){v.push(b)
+u.push(a>=e?-1:a);++c;++q}else{if(a<0||a>=e)return H.e(d,a)
+d[a]=m}}a0=F.j4(d)
 a1=[]
-n=m-1
+n=e-1
 j=a0.length-1
 for(;n>=0;){if(j>=0){if(j<0||j>=a0.length)return H.e(a0,j)
 t=n!==a0[j]}else t=!0
 if(t){t=n+1
-if(t===m)a2=-1
-else{if(t>=m)return H.e(e,t)
-a2=e[t]}if(n>=m)return H.e(e,n)
-a1.push(e[n])
-a1.push(a2)}else --j;--n}q+=a1.length}else{for(n=0;n<b1.length;++n){c=b1[n]
+if(t===e)a2=-1
+else{if(t>=e)return H.e(d,t)
+a2=d[t]}if(n>=e)return H.e(d,n)
+a1.push(d[n])
+a1.push(a2)}else --j;--n}q+=a1.length}else{for(c=0,n=0;n<b3.length;++n){b=b3[n]
 if(n>=t)return H.e(s,n)
-if(s[n]===-1){v.push(c)
-u.push(n);++q}}a1=null}a3=[]
+if(s[n]===-1){v.push(b)
+a=n-c
+u.push(a>=e?-1:a);++q;++c}}a1=null}a3=[]
 a4=[]
 for(n=0;n<z.length;++n){a5=z[n]
 if(n>=y.length)return H.e(y,n)
 a6=y[n]
-if(a5>=b0.length)return H.e(b0,a5)
-c=b0[a5]
-if(a6>>>0!==a6||a6>=b1.length)return H.e(b1,a6)
-a7=c.yr(b1[a6])
+if(a5>=b2.length)return H.e(b2,a5)
+b=b2[a5]
+if(a6>>>0!==a6||a6>=b3.length)return H.e(b3,a6)
+a7=b.yr(b3[a6])
 if(a7!=null){a3.push(a5)
 a4.push(a7);++q}}if(q===0)return
 t=x.length===0?null:x
 m=w.length===0?null:w
-b=v.length===0?null:v
-a=u.length===0?null:u
-a8=a4.length===0?null:a4
-a9=a3.length===0?null:a3
-return new F.M1(t,m,a1,b,a,a8,a9)},
+a8=v.length===0?null:v
+a9=u.length===0?null:u
+b0=a4.length===0?null:a4
+b1=a3.length===0?null:a3
+return new F.M1(t,m,a1,a8,a9,b0,b1)},
 j4:function(a){var z,y,x,w,v,u,t,s,r,q,p
 z=P.F(a,!0,P.KN)
 y=H.VM([],[P.KN])
@@ -6487,13 +6488,15 @@ if(!J.de(d,-1))a0.insertBefore(e,d)
 else a0.appendChild(e)}}if(u!=null)if(z.length===0)for(q=0;q<u.length;++q){if(q>=v.length)return H.e(v,q)
 c=v[q]
 a0.appendChild(c.Ww())
-if(a1)J.l6(c)}else for(q=0;q<u.length;++q){if(q>=v.length)return H.e(v,q)
+if(a1)J.l6(c)}else{r=u.length>16?P.F(z,!0,null):z
+for(q=0;q<u.length;++q){if(q>=v.length)return H.e(v,q)
 c=v[q]
 b=u[q]
-if(!J.de(b,z.length)){o=c.Ww()
-if(b>>>0!==b||b>=z.length)return H.e(z,b)
-a0.insertBefore(o,z[b])}else a0.appendChild(c.Ww())
-if(a1)J.l6(c)}},
+o=c.Ww()
+if(J.de(b,-1))k=null
+else{if(b>>>0!==b||b>=r.length)return H.e(r,b)
+k=r[b]}a0.insertBefore(o,k)
+if(a1)J.l6(c)}}},
 h8:{
 "^":"a;Pq>",
 ig:function(a){},

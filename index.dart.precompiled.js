@@ -6249,8 +6249,8 @@ while(!0){if(!(x<z.gB(b))){r=-1
 break}v=z.t(b,x)
 if(J.de(q.gPq(w),J.Cf(v))){r=x
 break}else{t.push(v)
-s.push(x)}++x}if(r!==-1){for(x=r+1;x<z.gB(b);++x){t.push(z.t(b,x))
-s.push(x)}p=w.yr(z.t(b,r))
+s.push(0)}++x}if(r!==-1){for(x=r+1;x<z.gB(b);++x){t.push(z.t(b,x))
+s.push(-1)}p=w.yr(z.t(b,r))
 if(p!=null){o=[p]
 n=[0]}else{o=null
 n=null}m=null
@@ -6287,22 +6287,22 @@ for(x=0;x<z.gB(b);++x){k=z.t(b,x)
 if(x>=q)return H.e(t,x)
 t[x]=k
 if(x>=l)return H.e(s,x)
-s[x]=x}return new F.M1(null,null,null,t,s,null,null)}}return},
-dN:function(b0,b1){var z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9
+s[x]=-1}return new F.M1(null,null,null,t,s,null,null)}}return},
+dN:function(b2,b3){var z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,b0,b1
 z=H.VM([],[P.KN])
 y=H.VM([],[P.KN])
 x=H.VM([],[F.h8])
 w=H.VM([],[P.KN])
 v=H.VM([],[F.h8])
 u=H.VM([],[P.KN])
-t=J.U6(b1)
-s=t.gB(b1)
+t=J.U6(b3)
+s=t.gB(b3)
 r=P.O8(s,-1,P.KN)
-if(b0.length*t.gB(b1)<=16)for(q=!1,p=0,o=0,n=0,m=0;l=b0.length,m<l;++m){k=b0[m]
+if(b2.length*t.gB(b3)<=16)for(q=!1,p=0,o=0,n=0,m=0;l=b2.length,m<l;++m){k=b2[m]
 l=J.RE(k)
 i=0
-while(!0){if(!(i<t.gB(b1))){j=!0
-break}h=t.t(b1,i)
+while(!0){if(!(i<t.gB(b3))){j=!0
+break}h=t.t(b3,i)
 if(J.de(l.gPq(k),J.Cf(h))){if(i>=s)return H.e(r,i)
 r[i]=m-n
 if(o>i)q=!0
@@ -6312,54 +6312,55 @@ y.push(i)
 j=!1
 break}++i}if(j){x.push(k)
 w.push(m);++n;++p}}else{g=P.Py(null,null,null,P.a,P.KN)
-for(m=0;m<t.gB(b1);++m)g.u(0,J.Cf(t.t(b1,m)),m)
-for(q=!1,p=0,o=0,n=0,m=0;l=b0.length,m<l;++m){f=b0[m]
+for(m=0;m<t.gB(b3);++m)g.u(0,J.Cf(t.t(b3,m)),m)
+for(q=!1,p=0,o=0,n=0,m=0;l=b2.length,m<l;++m){f=b2[m]
 e=g.t(0,J.Cf(f))
-if(e!=null){t.t(b1,e)
+if(e!=null){t.t(b3,e)
 if(e>>>0!==e||e>=s)return H.e(r,e)
 r[e]=m-n
 if(o>e)q=!0
 else o=e
 z.push(m)
 y.push(e)}else{x.push(f)
-w.push(m);++n;++p}}}if(q){l-=w.length
-d=P.O8(l,0,P.KN)
-for(c=0,m=0;m<t.gB(b1);++m){b=t.t(b1,m)
+w.push(m);++n;++p}}}d=l-w.length
+if(q){c=P.O8(d,0,P.KN)
+for(b=0,m=0;m<t.gB(b3);++m){a=t.t(b3,m)
 if(m>=s)return H.e(r,m)
-a=r[m]
-if(a===-1){v.push(b)
-u.push(m);++c;++p}else{a0=m-c
-if(a0<0||a0>=l)return H.e(d,a0)
-d[a0]=a}}a1=F.j4(d)
+l=r[m]
+a0=m-b
+if(l===-1){v.push(a)
+u.push(a0>=d?-1:a0);++b;++p}else{if(a0<0||a0>=d)return H.e(c,a0)
+c[a0]=l}}a1=F.j4(c)
 a2=[]
-m=l-1
+m=d-1
 i=a1.length-1
 for(;m>=0;){if(i>=0){if(i<0||i>=a1.length)return H.e(a1,i)
 s=m!==a1[i]}else s=!0
 if(s){s=m+1
-if(s===l)a3=-1
-else{if(s>=l)return H.e(d,s)
-a3=d[s]}if(m>=l)return H.e(d,m)
-a2.push(d[m])
-a2.push(a3)}else --i;--m}p+=a2.length}else{for(m=0;m<t.gB(b1);++m){b=t.t(b1,m)
+if(s===d)a3=-1
+else{if(s>=d)return H.e(c,s)
+a3=c[s]}if(m>=d)return H.e(c,m)
+a2.push(c[m])
+a2.push(a3)}else --i;--m}p+=a2.length}else{for(b=0,m=0;m<t.gB(b3);++m){a=t.t(b3,m)
 if(m>=s)return H.e(r,m)
-if(r[m]===-1){v.push(b)
-u.push(m);++p}}a2=null}a4=[]
+if(r[m]===-1){v.push(a)
+a0=m-b
+u.push(a0>=d?-1:a0);++p;++b}}a2=null}a4=[]
 a5=[]
 for(m=0;m<z.length;++m){a6=z[m]
 if(m>=y.length)return H.e(y,m)
 a7=y[m]
-if(a6>=b0.length)return H.e(b0,a6)
-a8=b0[a6].yr(t.t(b1,a7))
+if(a6>=b2.length)return H.e(b2,a6)
+a8=b2[a6].yr(t.t(b3,a7))
 if(a8!=null){a4.push(a6)
 a5.push(a8);++p}}if(p===0)return
 t=x.length===0?null:x
 s=w.length===0?null:w
 l=v.length===0?null:v
-a=u.length===0?null:u
-a0=a5.length===0?null:a5
-a9=a4.length===0?null:a4
-return new F.M1(t,s,a2,l,a,a0,a9)},
+a9=u.length===0?null:u
+b0=a5.length===0?null:a5
+b1=a4.length===0?null:a4
+return new F.M1(t,s,a2,l,a9,b0,b1)},
 j4:function(a){var z,y,x,w,v,u,t,s,r,q,p
 z=P.F(a,!0,P.KN)
 y=H.VM([],[P.KN])
@@ -6453,13 +6454,15 @@ if(!J.de(c,-1))z.mK(a1,d,c)
 else z.jx(a1,d)}}if(t!=null)if(y.length===0)for(p=0;p<t.length;++p){if(p>=u.length)return H.e(u,p)
 b=u[p]
 z.jx(a1,b.Ww())
-if(a2)J.l6(b)}else for(p=0;p<t.length;++p){if(p>=u.length)return H.e(u,p)
+if(a2)J.l6(b)}else{q=t.length>16?P.F(y,!0,null):y
+for(p=0;p<t.length;++p){if(p>=u.length)return H.e(u,p)
 b=u[p]
 a=t[p]
-if(!J.de(a,y.length)){n=b.Ww()
-if(a>>>0!==a||a>=y.length)return H.e(y,a)
-z.mK(a1,n,y[a])}else z.jx(a1,b.Ww())
-if(a2)J.l6(b)}},
+n=b.Ww()
+if(J.de(a,-1))j=null
+else{if(a>>>0!==a||a>=q.length)return H.e(q,a)
+j=q[a]}z.mK(a1,n,j)
+if(a2)J.l6(b)}}},
 Vy:{
 "^":"a;Rt,eh"},
 BW:{
