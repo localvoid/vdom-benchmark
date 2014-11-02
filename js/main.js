@@ -9,5 +9,8 @@ global.benchmarks = {
   },
   VirtualDom: function(i) {
     return VDomBenchmark.runBenchmark(require('./src/virtual-dom/dom'), i);
-  }
+  },
+  Bobril: function(i) {
+    return VDomBenchmark.runBenchmark(require('./src/bobril/dom'), i);
+  }  
 };
