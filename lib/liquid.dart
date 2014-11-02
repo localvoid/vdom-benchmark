@@ -113,11 +113,12 @@ class Benchmark extends BenchmarkBase {
   void render() {
     _app = new App(_root, a);
     _root.injectComponent(_app, _container);
+    forceUpdate();
   }
 
   void update() {
     _app.node = b;
-    _root.update();
+    forceUpdate();
   }
 
   void setup() {
