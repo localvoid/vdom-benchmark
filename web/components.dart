@@ -6,7 +6,7 @@ import 'package:vdom_benchmark/generator.dart' as g;
 import 'package:vdom_benchmark/liquid.dart' as vc;
 import 'package:vdom_benchmark/app.dart';
 
-const contestants = const ['Liquid', 'React'];
+const contestants = const ['Liquid', 'React', 'Bobril'];
 
 g.Model generateTests() {
   final groups = [];
@@ -87,6 +87,10 @@ void main() {
 
       html.querySelector('#runReactJs').onClick.listen((_) {
         runJsBenchmark('React');
+      });
+
+      html.querySelector('#runBobril').onClick.listen((_) {
+        runJsBenchmark('Bobril');
       });
 
     });
