@@ -3,6 +3,6 @@ description: A sample web application
 dependencies:
   browser: any
   charted: any
-  vdom: '>=0.3.2'
+  vdom: '>=0.3.5'
   liquid:
     git: git@github.com:localvoid/liquid.git
