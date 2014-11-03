@@ -3120,7 +3120,7 @@ $0:[function(){this.d.yk(new P.bJ("value "+this.a.a))},"$0",null,0,0,null,"call"
 $isEH:true},
 MO:{
 "^":"a;"},
-oK:{
+nP:{
 "^":"a;"},
 KA:{
 "^":"a;Tv<,t9<",
@@ -5966,8 +5966,8 @@ em:{
 "^":"Tp:34;",
 $1:[function(a){var z,y
 z=E.t3()
-y=new F.cy(C.nP,"initial",z,null)
-y.Cf=F.Ar(z.hR.length,4)
+y=new F.cy(C.zq,"initial",z,null)
+y.Cf=F.Ar(z.hR.length,5)
 y.I3("generating-data")
 P.dT(P.k5(0,0,0,0,0,0),null,null).ml(new E.VW(y))},"$1",null,2,0,null,66,"call"],
 $isEH:true},
@@ -5988,7 +5988,9 @@ H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.ql(x)),w.el),[H.Kp(w,0)]).DN()
 w=J.Vg(document.querySelector("#runMithrilJs"))
 H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.N2(x)),w.el),[H.Kp(w,0)]).DN()
 w=J.Vg(document.querySelector("#runVirtualDomJs"))
-H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.uI(x)),w.el),[H.Kp(w,0)]).DN()},"$1",null,2,0,null,66,"call"],
+H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.uI(x)),w.el),[H.Kp(w,0)]).DN()
+w=J.Vg(document.querySelector("#runBobrilJs"))
+H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.Ve(x)),w.el),[H.Kp(w,0)]).DN()},"$1",null,2,0,null,66,"call"],
 $isEH:true},
 Nt:{
 "^":"Tp:43;d,e",
@@ -6071,6 +6073,10 @@ $isEH:true},
 uI:{
 "^":"Tp:34;x",
 $1:[function(a){this.x.$1("VirtualDom")},"$1",null,2,0,null,66,"call"],
+$isEH:true},
+Ve:{
+"^":"Tp:34;y",
+$1:[function(a){this.y.$1("Bobril")},"$1",null,2,0,null,66,"call"],
 $isEH:true}},1],["","",,V,{
 "^":"",
 VQ:[function(a){},"$1","bC",2,0,38],
@@ -6519,21 +6525,22 @@ w=F.rd(this.DD,z.gDD(a))
 v=F.Hr(this.wd,z.gwd(a))
 if(y==null&&x==null&&w==null&&v==null)return
 return new F.rf(y,x,w,v)},
-Ww:function(){var z,y,x
-z=document.createElement(this.XG,null)
-for(y=this.wd,x=0;x<y.length;++x)z.appendChild(y[x].Ww())
+Ww:function(){var z=document.createElement(this.XG,null)
+this.fY(z)
 return z},
+fY:function(a){var z,y
+for(z=this.wd,y=0;y<z.length;++y)a.appendChild(z[y].Ww())},
 ig:function(a){var z,y
 for(z=this.wd,y=0;y<z.length;++y)J.l6(z[y])},
 dQ:function(a){var z,y
 for(z=this.wd,y=0;y<z.length;++y)J.vr(z[y])},
 bu:function(a){var z=this.XG
 return"<"+z+" key=\""+H.d(this.Pq)+"\">"+C.Nm.eC(this.wd)+"</"+z+">"}},
-uO:{
+uF:{
 "^":"Tp:43;a",
 $2:function(a,b){this.a.setAttribute(a,b)},
 $isEH:true},
-zx:{
+G5:{
 "^":"Tp:43;b",
 $2:function(a,b){J.vA(this.b.style,a,b)},
 $isEH:true},
@@ -6550,13 +6557,15 @@ return document.createTextNode(z)},
 bu:function(a){return H.d(this.nU)}},
 rf:{
 "^":"SK;aO,Nf,ho,R6",
-uv:function(a,b){var z,y
+uv:function(a,b){var z,y,x
 z=this.aO
 if(z!=null)F.lX(z,a)
 z=this.ho
 if(z!=null){y=J.pP(a)
-y.Ex(z.Rt)
-y.Ay(0,z.eh)}z=this.Nf
+x=z.Rt
+if(x!=null)y.Ex(x)
+z=z.eh
+if(z!=null)y.Ay(0,z)}z=this.Nf
 if(z!=null)F.CS(z,a)
 z=this.R6
 if(z!=null)F.Fj(z,a,b)},
@@ -6611,7 +6620,7 @@ z=document.querySelector("#results-table > thead")
 y=document.querySelector("#results-table > tbody")
 x=document.createElement("tr",null)
 x.appendChild(W.r3("th",null))
-for(w=new H.a7(this.zs,4,0,null);w.G();){v=w.lo
+for(w=new H.a7(this.zs,5,0,null);w.G();){v=w.lo
 u=W.r3("th",null)
 J.c9(u,v)
 x.appendChild(u)}z.appendChild(x)
@@ -6627,7 +6636,7 @@ p=u.dI(q)
 o=W.r3("code",null)
 J.c9(o,r)
 p.appendChild(o)
-for(n=0;n<4;++n){p=u.dI(q)
+for(n=0;n<5;++n){p=u.dI(q)
 p.toString
 new W.I4(p).h(0,"result")}y.appendChild(q)}}},
 DK:function(){var z,y,x,w,v,u,t,s,r,q,p,o,n,m
@@ -6645,7 +6654,7 @@ J.pP(s).h(0,"panel-body")
 r=document.createElement("table",null)
 t=J.RE(r)
 t.gDD(r).h(0,"results-chart")
-for(q=new H.a7(x,4,0,null);q.G();){p=q.lo
+for(q=new H.a7(x,5,0,null);q.G();){p=q.lo
 o=t.vT(r)
 n=J.RE(o)
 m=n.dI(o)
@@ -6661,7 +6670,7 @@ s.appendChild(r)
 v.appendChild(s)
 t.appendChild(v)
 z.appendChild(t)}},
-Qj:function(a,b,c){var z=H.TK(this.zs,a,0,4)
+Qj:function(a,b,c){var z=H.TK(this.zs,a,0,5)
 J.kW(J.UQ(this.Cf.nU,b),z,c)
 this.rT(b)},
 rT:function(a){var z,y,x,w,v
@@ -6818,11 +6827,13 @@ z.push(new F.cv("div",null,null,null,E.Q6(w.gwd(v)),u))}else{u=w.gPq(v)
 z.push(new F.cv("span",null,null,null,[new F.kJ(J.AG(w.gPq(v)),0)],u))}++x}return z},
 PY:{
 "^":"f6;a>,b<,Z9,bq,VR,oc",
-Ww:function(){var z=new F.cv("div",null,null,null,E.Q6(this.a),0)
+Ww:function(){var z,y
+z=new F.cv("div",null,null,null,E.Q6(this.a),0)
 this.bq=z
-z=z.Ww()
-this.VR=z
-this.Z9.appendChild(z)},
+y=document.createElement("div",null)
+z.fY(y)
+this.VR=y
+this.Z9.appendChild(y)},
 Li:function(){var z,y
 z=E.Q6(this.b)
 y=this.bq.yr(new F.cv("div",null,null,null,z,0))
@@ -6902,8 +6913,8 @@ y.$isa=z
 y=P.EH
 y.$isEH=z
 y.$isa=z
-y=P.oK
-y.$isoK=z
+y=P.nP
+y.$isnP=z
 y.$isa=z
 y=P.b8
 y.$isb8=z
@@ -7196,8 +7207,8 @@ a.fixed$length=init
 return a}
 C.l0=I.ko(["panel","panel-default"])
 C.oQ=I.ko([0,1])
-C.nP=I.ko(["VDom","React","Mithril","VirtualDom"])
 C.xD=I.ko([])
+C.zq=I.ko(["VDom","React","Mithril","VirtualDom","Bobril"])
 C.Sj=I.ko(["svg","xhtml","xlink","xml","xmlns"])
 C.tQ=new H.LP(5,{svg:"http://www.w3.org/2000/svg",xhtml:"http://www.w3.org/1999/xhtml",xlink:"http://www.w3.org/1999/xlink",xml:"http://www.w3.org/XML/1998/namespace",xmlns:"http://www.w3.org/2000/xmlns/"},C.Sj)
 C.Ka=new H.GD("call")
@@ -7216,7 +7227,7 @@ $.nw=null
 $.vv=null
 $.Bv=null
 $.Be=D.H2()
-$.Yy=null
+$.oK=null
 $.S6=null
 $.k8=null
 $.mg=null
@@ -10042,11 +10053,11 @@ if(!"name" in MO)MO.name="MO"
 $desc=$collectedClasses.MO
 if($desc instanceof Array)$desc=$desc[1]
 MO.prototype=$desc
-function oK(){}oK.builtin$cls="oK"
-if(!"name" in oK)oK.name="oK"
-$desc=$collectedClasses.oK
+function nP(){}nP.builtin$cls="nP"
+if(!"name" in nP)nP.name="nP"
+$desc=$collectedClasses.nP
 if($desc instanceof Array)$desc=$desc[1]
-oK.prototype=$desc
+nP.prototype=$desc
 function KA(Tv,t9){this.Tv=Tv
 this.t9=t9}KA.builtin$cls="KA"
 if(!"name" in KA)KA.name="KA"
@@ -11069,6 +11080,11 @@ if(!"name" in uI)uI.name="uI"
 $desc=$collectedClasses.uI
 if($desc instanceof Array)$desc=$desc[1]
 uI.prototype=$desc
+function Ve(y){this.y=y}Ve.builtin$cls="Ve"
+if(!"name" in Ve)Ve.name="Ve"
+$desc=$collectedClasses.Ve
+if($desc instanceof Array)$desc=$desc[1]
+Ve.prototype=$desc
 function KV(Pq,wM,wd){this.Pq=Pq
 this.wM=wM
 this.wd=wd}KV.builtin$cls="KV"
@@ -11223,16 +11239,16 @@ cv.prototype.gQg=function(receiver){return this.Qg}
 cv.prototype.ge6=function(){return this.e6}
 cv.prototype.gDD=function(receiver){return this.DD}
 cv.prototype.gwd=function(receiver){return this.wd}
-function uO(a){this.a=a}uO.builtin$cls="uO"
-if(!"name" in uO)uO.name="uO"
-$desc=$collectedClasses.uO
+function uF(a){this.a=a}uF.builtin$cls="uF"
+if(!"name" in uF)uF.name="uF"
+$desc=$collectedClasses.uF
 if($desc instanceof Array)$desc=$desc[1]
-uO.prototype=$desc
-function zx(b){this.b=b}zx.builtin$cls="zx"
-if(!"name" in zx)zx.name="zx"
-$desc=$collectedClasses.zx
+uF.prototype=$desc
+function G5(b){this.b=b}G5.builtin$cls="G5"
+if(!"name" in G5)G5.name="G5"
+$desc=$collectedClasses.G5
 if($desc instanceof Array)$desc=$desc[1]
-zx.prototype=$desc
+G5.prototype=$desc
 function h8(Pq){this.Pq=Pq}h8.builtin$cls="h8"
 if(!"name" in h8)h8.name="h8"
 $desc=$collectedClasses.h8
@@ -11417,4 +11433,4 @@ if($desc instanceof Array)$desc=$desc[1]
 PY.prototype=$desc
 PY.prototype.ga=function(receiver){return this.a}
 PY.prototype.gb=function(){return this.b}
-return[qE,Gh,rK,F6,LL,fY,Mr,lJ,ct,Xk,it,Az,QP,IF,n6,Ny,nx,QQ,MA,y4,d7,Um,Rk,DG,mN,vH,xO,qs,Em,NW,rV,Wy,QF,Ec,cm,Nh,h4,Al,Ty,ea,PZ,zZ,as,hH,Aa,u5,Yu,Zm,iG,jP,FO,xf,xn,Vb,QH,ST,X2,tb,Sg,pA,Mi,KD,Ln,HL,In,wP,eP,AL,Og,M6,El,mC,SV,aB,fJ,Ih,D8,Vh,rC,ZY,cx,Ee,Qb,PG,Hw,xI,Aj,oU,Q0,ih,uH,BH,mh,G7,l9,Ql,wL,bP,FH,SN,me,fD,nU,ni,rR,qj,qW,KR,ew,Mw,fs,M9,A6,ip,Mx,j2,Ea,lp,kd,I0,QR,Cp,zD,Ul,zX,KK,bk,fq,PU,UK,GI,Tb,Iv,BT,fX,Zb,FB,xV,Pe,y6,RH,Kn,Lq,OR,BR,vw,aG,J6,K5,Xg,UM,YC,hq,NL,yp,AK,Mq,nK,Nc,rj,yK,Zv,LO,Q7,hF,OF,Dh,ZJ,mU,ph,IT,JY,Pq,xt,jQ,Kg,ui,D6,Bn,Sm,dx,QU,es,jw,bd,pf,nQ,W1,HC,wf,TC,bb,Nd,zp,Xu,qM,v6,US,oB,Ah,yu,MI,Ub,bM,eW,Qy,ju,OE,N9,BA,d0,tp,rE,CC,PQ,uz,Yd,uA,AD,Gr,cs,GH,To,MU,qI,Pu,rQ,Lx,d5,hy,r8,aS,CG,Kf,jk,xN,Eo,YS,o4,GR,vt,wD,BD,vR,Ja,We,cB,LQ,yR,HP,fa,l4,Il,np,Pi,qO,zu,cO,P0,xl,Xr,Sl,Qm,bf,ET,df,zU,fS,xj,dE,ZA,aH,nl,eE,V6,uD,Gv,kn,YE,Ue,iC,is,Q,fV,P,bU,VA,O,JO,mP,f0,aX,NY,cC,RA,IY,JH,jl,vK,Iy,JM,Ua,ns,yo,Bj,NO,II,fP,X1,HU,oo,OW,Tf,iY,yH,FA,Av,iV,ys,LP,hY,XR,LI,FD,Nv,Cj,u8,Zr,W0,az,vV,Am,XO,dr,TL,KX,uZ,OQ,Tp,Bp,v,tc,lb,tD,hJ,dC,wN,VX,QV,kc,fU,Pj,cu,Aq,LN,kx,Yf,ps,o9,Hv,IW,Oi,SM,NJ,Qw,Od,XM,Gy,QI,Df,WF,l7,dh,YD,r5,d6,L0,cA,cp,nV,nn,p2,pE,wK,A2,oJ,xW,R5,Sf,z6,K8,vN,V5,pW,zm,nB,aL,bX,a7,i1,xy,MH,A8,U5,SO,TN,Lj,iK,GD,th,ha,C6,Ft,O6,b8,Z5,nu,DQ,Px,Ky,vs,da,pV,U7,rH,eX,ZL,rq,RW,YP,jZ,FZ,OM,qh,x4,E8,lu,mX,HI,lz,Rl,Jb,M4,B5,PI,i9,iS,Dy,lv,lU,xp,UH,D0,j5,ii,MO,oK,KA,x1,qB,aA,LV,DS,dp,Wh,CR,Qk,dR,uR,QX,YR,fB,nO,Er,OH,m0,pK,R8,hj,MK,pQ,FG,k6,oi,DJ,PL,fG,EQ,YB,a1,S9,db,i5,N6,b6,tj,zQ,u3,mW,LU,E9,lD,LG,Sw,KG,Ma,Vj,Y2,CL,a2,fR,xG,CP,a6,P7,DW,Ge,LK,AT,bJ,JS,ub,ds,lj,UV,TO,VS,t7,HG,eV,kM,EH,KN,cX,An,zM,L9,lf,a,mE,qU,Rn,wv,BV,Xn,kh,A5,Fp,id,VG,wz,B1,zL,ec,e7,hm,x5,nj,rl,qb,Gb,tJ,Zc,i7,nF,FK,Si,vf,Fc,hD,I4,RO,Cq,xC,Pb,W9,dW,O7,IU,E4,Gn,r7,Tz,Wk,Hp,PC,Nz,Jd,QS,hR,vY,b0,Dg,Ob,GV,DV,fj,Ip,a9,YL,KC,xL,As,GE,ur,kP,uQ,D7,Zf,GS,Lb,ma,qS,GY,eq,au,Ll,fL,io,bc,em,VW,Nt,Et,O4,Vv,yU,CF,JF,ZX,jr,Ws,ql,N2,uI,KV,u9,QZ,IE,XE,If,Ew,tK,nh,wJ,W6,Md,YJ,DO,lP,Uf,Vy,BW,ov,bW,PV,Cy,Y6,cv,uO,zx,h8,kJ,rf,M1,SK,qf,Nu,cy,tI,Nn,nJ,h2,x7,O0,YQ,jA,Ba,HO,pH,jO,eY,p8,U0,vq,du,Q2,Rh,HOk,oe,f6,PY]}
+return[qE,Gh,rK,F6,LL,fY,Mr,lJ,ct,Xk,it,Az,QP,IF,n6,Ny,nx,QQ,MA,y4,d7,Um,Rk,DG,mN,vH,xO,qs,Em,NW,rV,Wy,QF,Ec,cm,Nh,h4,Al,Ty,ea,PZ,zZ,as,hH,Aa,u5,Yu,Zm,iG,jP,FO,xf,xn,Vb,QH,ST,X2,tb,Sg,pA,Mi,KD,Ln,HL,In,wP,eP,AL,Og,M6,El,mC,SV,aB,fJ,Ih,D8,Vh,rC,ZY,cx,Ee,Qb,PG,Hw,xI,Aj,oU,Q0,ih,uH,BH,mh,G7,l9,Ql,wL,bP,FH,SN,me,fD,nU,ni,rR,qj,qW,KR,ew,Mw,fs,M9,A6,ip,Mx,j2,Ea,lp,kd,I0,QR,Cp,zD,Ul,zX,KK,bk,fq,PU,UK,GI,Tb,Iv,BT,fX,Zb,FB,xV,Pe,y6,RH,Kn,Lq,OR,BR,vw,aG,J6,K5,Xg,UM,YC,hq,NL,yp,AK,Mq,nK,Nc,rj,yK,Zv,LO,Q7,hF,OF,Dh,ZJ,mU,ph,IT,JY,Pq,xt,jQ,Kg,ui,D6,Bn,Sm,dx,QU,es,jw,bd,pf,nQ,W1,HC,wf,TC,bb,Nd,zp,Xu,qM,v6,US,oB,Ah,yu,MI,Ub,bM,eW,Qy,ju,OE,N9,BA,d0,tp,rE,CC,PQ,uz,Yd,uA,AD,Gr,cs,GH,To,MU,qI,Pu,rQ,Lx,d5,hy,r8,aS,CG,Kf,jk,xN,Eo,YS,o4,GR,vt,wD,BD,vR,Ja,We,cB,LQ,yR,HP,fa,l4,Il,np,Pi,qO,zu,cO,P0,xl,Xr,Sl,Qm,bf,ET,df,zU,fS,xj,dE,ZA,aH,nl,eE,V6,uD,Gv,kn,YE,Ue,iC,is,Q,fV,P,bU,VA,O,JO,mP,f0,aX,NY,cC,RA,IY,JH,jl,vK,Iy,JM,Ua,ns,yo,Bj,NO,II,fP,X1,HU,oo,OW,Tf,iY,yH,FA,Av,iV,ys,LP,hY,XR,LI,FD,Nv,Cj,u8,Zr,W0,az,vV,Am,XO,dr,TL,KX,uZ,OQ,Tp,Bp,v,tc,lb,tD,hJ,dC,wN,VX,QV,kc,fU,Pj,cu,Aq,LN,kx,Yf,ps,o9,Hv,IW,Oi,SM,NJ,Qw,Od,XM,Gy,QI,Df,WF,l7,dh,YD,r5,d6,L0,cA,cp,nV,nn,p2,pE,wK,A2,oJ,xW,R5,Sf,z6,K8,vN,V5,pW,zm,nB,aL,bX,a7,i1,xy,MH,A8,U5,SO,TN,Lj,iK,GD,th,ha,C6,Ft,O6,b8,Z5,nu,DQ,Px,Ky,vs,da,pV,U7,rH,eX,ZL,rq,RW,YP,jZ,FZ,OM,qh,x4,E8,lu,mX,HI,lz,Rl,Jb,M4,B5,PI,i9,iS,Dy,lv,lU,xp,UH,D0,j5,ii,MO,nP,KA,x1,qB,aA,LV,DS,dp,Wh,CR,Qk,dR,uR,QX,YR,fB,nO,Er,OH,m0,pK,R8,hj,MK,pQ,FG,k6,oi,DJ,PL,fG,EQ,YB,a1,S9,db,i5,N6,b6,tj,zQ,u3,mW,LU,E9,lD,LG,Sw,KG,Ma,Vj,Y2,CL,a2,fR,xG,CP,a6,P7,DW,Ge,LK,AT,bJ,JS,ub,ds,lj,UV,TO,VS,t7,HG,eV,kM,EH,KN,cX,An,zM,L9,lf,a,mE,qU,Rn,wv,BV,Xn,kh,A5,Fp,id,VG,wz,B1,zL,ec,e7,hm,x5,nj,rl,qb,Gb,tJ,Zc,i7,nF,FK,Si,vf,Fc,hD,I4,RO,Cq,xC,Pb,W9,dW,O7,IU,E4,Gn,r7,Tz,Wk,Hp,PC,Nz,Jd,QS,hR,vY,b0,Dg,Ob,GV,DV,fj,Ip,a9,YL,KC,xL,As,GE,ur,kP,uQ,D7,Zf,GS,Lb,ma,qS,GY,eq,au,Ll,fL,io,bc,em,VW,Nt,Et,O4,Vv,yU,CF,JF,ZX,jr,Ws,ql,N2,uI,Ve,KV,u9,QZ,IE,XE,If,Ew,tK,nh,wJ,W6,Md,YJ,DO,lP,Uf,Vy,BW,ov,bW,PV,Cy,Y6,cv,uF,G5,h8,kJ,rf,M1,SK,qf,Nu,cy,tI,Nn,nJ,h2,x7,O0,YQ,jA,Ba,HO,pH,jO,eY,p8,U0,vq,du,Q2,Rh,HOk,oe,f6,PY]}

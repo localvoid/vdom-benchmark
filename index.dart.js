@@ -3120,7 +3120,7 @@ $0:[function(){this.d.yk(new P.bJ("value "+this.a.a))},"$0",null,0,0,null,"call"
 $isEH:true},
 MO:{
 "^":"a;"},
-oK:{
+nP:{
 "^":"a;"},
 KA:{
 "^":"a;Tv<,t9<",
@@ -5966,8 +5966,8 @@ em:{
 "^":"Tp:34;",
 $1:[function(a){var z,y
 z=E.t3()
-y=new F.cy(C.nP,"initial",z,null)
-y.Cf=F.Ar(z.hR.length,4)
+y=new F.cy(C.zq,"initial",z,null)
+y.Cf=F.Ar(z.hR.length,5)
 y.I3("generating-data")
 P.dT(P.k5(0,0,0,0,0,0),null,null).ml(new E.VW(y))},"$1",null,2,0,null,66,"call"],
 $isEH:true},
@@ -5988,7 +5988,9 @@ H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.ql(x)),w.el),[H.Kp(w,0)]).DN()
 w=J.Vg(document.querySelector("#runMithrilJs"))
 H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.N2(x)),w.el),[H.Kp(w,0)]).DN()
 w=J.Vg(document.querySelector("#runVirtualDomJs"))
-H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.uI(x)),w.el),[H.Kp(w,0)]).DN()},"$1",null,2,0,null,66,"call"],
+H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.uI(x)),w.el),[H.Kp(w,0)]).DN()
+w=J.Vg(document.querySelector("#runBobrilJs"))
+H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.Ve(x)),w.el),[H.Kp(w,0)]).DN()},"$1",null,2,0,null,66,"call"],
 $isEH:true},
 Nt:{
 "^":"Tp:43;d,e",
@@ -6071,6 +6073,10 @@ $isEH:true},
 uI:{
 "^":"Tp:34;x",
 $1:[function(a){this.x.$1("VirtualDom")},"$1",null,2,0,null,66,"call"],
+$isEH:true},
+Ve:{
+"^":"Tp:34;y",
+$1:[function(a){this.y.$1("Bobril")},"$1",null,2,0,null,66,"call"],
 $isEH:true}},1],["","",,V,{
 "^":"",
 VQ:[function(a){},"$1","bC",2,0,38],
@@ -6519,21 +6525,22 @@ w=F.rd(this.DD,z.gDD(a))
 v=F.Hr(this.wd,z.gwd(a))
 if(y==null&&x==null&&w==null&&v==null)return
 return new F.rf(y,x,w,v)},
-Ww:function(){var z,y,x
-z=document.createElement(this.XG,null)
-for(y=this.wd,x=0;x<y.length;++x)z.appendChild(y[x].Ww())
+Ww:function(){var z=document.createElement(this.XG,null)
+this.fY(z)
 return z},
+fY:function(a){var z,y
+for(z=this.wd,y=0;y<z.length;++y)a.appendChild(z[y].Ww())},
 ig:function(a){var z,y
 for(z=this.wd,y=0;y<z.length;++y)J.l6(z[y])},
 dQ:function(a){var z,y
 for(z=this.wd,y=0;y<z.length;++y)J.vr(z[y])},
 bu:function(a){var z=this.XG
 return"<"+z+" key=\""+H.d(this.Pq)+"\">"+C.Nm.eC(this.wd)+"</"+z+">"}},
-uO:{
+uF:{
 "^":"Tp:43;a",
 $2:function(a,b){this.a.setAttribute(a,b)},
 $isEH:true},
-zx:{
+G5:{
 "^":"Tp:43;b",
 $2:function(a,b){J.vA(this.b.style,a,b)},
 $isEH:true},
@@ -6550,13 +6557,15 @@ return document.createTextNode(z)},
 bu:function(a){return H.d(this.nU)}},
 rf:{
 "^":"SK;aO,Nf,ho,R6",
-uv:function(a,b){var z,y
+uv:function(a,b){var z,y,x
 z=this.aO
 if(z!=null)F.lX(z,a)
 z=this.ho
 if(z!=null){y=J.pP(a)
-y.Ex(z.Rt)
-y.Ay(0,z.eh)}z=this.Nf
+x=z.Rt
+if(x!=null)y.Ex(x)
+z=z.eh
+if(z!=null)y.Ay(0,z)}z=this.Nf
 if(z!=null)F.CS(z,a)
 z=this.R6
 if(z!=null)F.Fj(z,a,b)},
@@ -6611,7 +6620,7 @@ z=document.querySelector("#results-table > thead")
 y=document.querySelector("#results-table > tbody")
 x=document.createElement("tr",null)
 x.appendChild(W.r3("th",null))
-for(w=new H.a7(this.zs,4,0,null);w.G();){v=w.lo
+for(w=new H.a7(this.zs,5,0,null);w.G();){v=w.lo
 u=W.r3("th",null)
 J.c9(u,v)
 x.appendChild(u)}z.appendChild(x)
@@ -6627,7 +6636,7 @@ p=u.dI(q)
 o=W.r3("code",null)
 J.c9(o,r)
 p.appendChild(o)
-for(n=0;n<4;++n){p=u.dI(q)
+for(n=0;n<5;++n){p=u.dI(q)
 p.toString
 new W.I4(p).h(0,"result")}y.appendChild(q)}}},
 DK:function(){var z,y,x,w,v,u,t,s,r,q,p,o,n,m
@@ -6645,7 +6654,7 @@ J.pP(s).h(0,"panel-body")
 r=document.createElement("table",null)
 t=J.RE(r)
 t.gDD(r).h(0,"results-chart")
-for(q=new H.a7(x,4,0,null);q.G();){p=q.lo
+for(q=new H.a7(x,5,0,null);q.G();){p=q.lo
 o=t.vT(r)
 n=J.RE(o)
 m=n.dI(o)
@@ -6661,7 +6670,7 @@ s.appendChild(r)
 v.appendChild(s)
 t.appendChild(v)
 z.appendChild(t)}},
-Qj:function(a,b,c){var z=H.TK(this.zs,a,0,4)
+Qj:function(a,b,c){var z=H.TK(this.zs,a,0,5)
 J.kW(J.UQ(this.Cf.nU,b),z,c)
 this.rT(b)},
 rT:function(a){var z,y,x,w,v
@@ -6818,11 +6827,13 @@ z.push(new F.cv("div",null,null,null,E.Q6(w.gwd(v)),u))}else{u=w.gPq(v)
 z.push(new F.cv("span",null,null,null,[new F.kJ(J.AG(w.gPq(v)),0)],u))}++x}return z},
 PY:{
 "^":"f6;a>,b<,Z9,bq,VR,oc",
-Ww:function(){var z=new F.cv("div",null,null,null,E.Q6(this.a),0)
+Ww:function(){var z,y
+z=new F.cv("div",null,null,null,E.Q6(this.a),0)
 this.bq=z
-z=z.Ww()
-this.VR=z
-this.Z9.appendChild(z)},
+y=document.createElement("div",null)
+z.fY(y)
+this.VR=y
+this.Z9.appendChild(y)},
 Li:function(){var z,y
 z=E.Q6(this.b)
 y=this.bq.yr(new F.cv("div",null,null,null,z,0))
@@ -6902,8 +6913,8 @@ y.$isa=z
 y=P.EH
 y.$isEH=z
 y.$isa=z
-y=P.oK
-y.$isoK=z
+y=P.nP
+y.$isnP=z
 y.$isa=z
 y=P.b8
 y.$isb8=z
@@ -7196,8 +7207,8 @@ a.fixed$length=init
 return a}
 C.l0=I.ko(["panel","panel-default"])
 C.oQ=I.ko([0,1])
-C.nP=I.ko(["VDom","React","Mithril","VirtualDom"])
 C.xD=I.ko([])
+C.zq=I.ko(["VDom","React","Mithril","VirtualDom","Bobril"])
 C.Sj=I.ko(["svg","xhtml","xlink","xml","xmlns"])
 C.tQ=new H.LP(5,{svg:"http://www.w3.org/2000/svg",xhtml:"http://www.w3.org/1999/xhtml",xlink:"http://www.w3.org/1999/xlink",xml:"http://www.w3.org/XML/1998/namespace",xmlns:"http://www.w3.org/2000/xmlns/"},C.Sj)
 C.Ka=new H.GD("call")
@@ -7216,7 +7227,7 @@ $.nw=null
 $.vv=null
 $.Bv=null
 $.Be=D.H2()
-$.Yy=null
+$.oK=null
 $.S6=null
 $.k8=null
 $.mg=null
