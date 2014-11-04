@@ -35,11 +35,8 @@ class Benchmark extends BenchmarkBase {
   }
 
   void update() {
-    final vNewRoot = new v.Element(0, 'div', vdomBuildTree(b));
-    final patch = _vRoot.diff(vNewRoot);
-    if (patch != null) {
-      patch.apply(_root);
-    }
+    final newVroot = new v.Element(0, 'div', vdomBuildTree(b));
+    _vRoot.sync(newVroot);
   }
 
   void setup() {
