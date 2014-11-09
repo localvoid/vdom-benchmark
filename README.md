@@ -7,6 +7,7 @@ dom libraries.
 - [React](http://facebook.github.io/react/) (JavaScript)
 - [Mithril](http://lhorie.github.io/mithril/index.html) (JavaScript)
 - [VirtualDom](https://github.com/Matt-Esch/virtual-dom) (JavaScript)
+- [Bobril](https://github.com/Bobris/Bobril) (TypeScript)
 
 ## [Run benchmark](http://localvoid.github.io/vdom-benchmark/)
 
