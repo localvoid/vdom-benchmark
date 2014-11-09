@@ -9,8 +9,8 @@ import 'package:liquid/liquid.dart';
 class NodeComponent extends VComponent {
   g.Node _node;
 
-  NodeComponent(ComponentBase parent, this._node) :
-    super(parent, new html.DivElement());
+  NodeComponent(ComponentBase parent, this._node)
+      : super('div', parent);
 
   v.Element build() {
     final result = [];
@@ -19,9 +19,9 @@ class NodeComponent extends VComponent {
       for (var i = 0; i < children.length; i++) {
         final c = children[i];
         if (c.children == null) {
-          result.add(LeafComponent.virtual(c.key, this, c));
+          result.add(LeafComponent.virtual(c.key, c));
         } else {
-          result.add(NodeComponent.virtual(c.key, this, c));
+          result.add(NodeComponent.virtual(c.key, c));
         }
       }
     }
@@ -36,10 +36,10 @@ class NodeComponent extends VComponent {
     }
   }
 
-  static VDomComponent virtual(Object key, ComponentBase parent, g.Node node) {
-    return new VDomComponent(key, (component) {
+  static VDomComponent virtual(Object key, g.Node node) {
+    return new VDomComponent(key, (component, context) {
       if (component == null) {
-        return new NodeComponent(parent, node);
+        return new NodeComponent(context, node);
       }
       component.updateProperties(node);
     });
@@ -52,7 +52,7 @@ class LeafComponent extends VComponent {
   g.Node _node;
 
   LeafComponent(ComponentBase parent, this._node)
-      : super(parent, new html.SpanElement());
+      : super('span', parent);
 
   void updateProperties(g.Node node) {
     _node = node;
@@ -62,10 +62,10 @@ class LeafComponent extends VComponent {
     }
   }
 
-  static VDomComponent virtual(Object key, ComponentBase parent, g.Node node) {
-    return new VDomComponent(key, (component) {
+  static VDomComponent virtual(Object key, g.Node node) {
+    return new VDomComponent(key, (component, context) {
       if (component == null) {
-        return new LeafComponent(parent, node);
+        return new LeafComponent(context, node);
       }
       component.updateProperties(node);
     });
@@ -88,12 +88,11 @@ class App extends VComponent {
     update();
   }
 
-  App(ComponentBase parent, this._nodes)
-      : super(parent, new html.DivElement());
+  App(ComponentBase parent, this._nodes) : super('div', parent);
 
   v.Element build() {
     return new v.Element(0, 'div',
-        [NodeComponent.virtual(0, this, new g.Node(0, true, _nodes))]);
+        [NodeComponent.virtual(0, new g.Node(0, true, _nodes))]);
   }
 }
 
@@ -103,7 +102,6 @@ class Benchmark extends BenchmarkBase {
   List<g.Node> b;
   html.Element _container;
 
-  UpdateLoop _updateLoop;
   RootComponent _root;
 
   App _app;

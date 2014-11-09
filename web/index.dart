@@ -6,7 +6,7 @@ import 'package:vdom_benchmark/generator.dart' as g;
 import 'package:vdom_benchmark/vdom.dart' as vdom;
 import 'package:vdom_benchmark/app.dart';
 
-const contestants = const ['VDom', 'React', 'Mithril', 'VirtualDom', 'Bobril', 'VSync'];
+const contestants = const ['VDom', 'React', 'Mithril', 'VirtualDom', 'Bobril'];
 
 g.Model generateTests() {
   final groups = [];

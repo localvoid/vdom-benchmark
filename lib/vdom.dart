@@ -24,25 +24,23 @@ class Benchmark extends BenchmarkBase {
   html.Element _container;
 
   v.Element _vRoot;
-  html.Element _root;
 
   Benchmark(this.a, this.b, this._container) : super('VDom');
 
   void render() {
     _vRoot = new v.Element(0, 'div', vdomBuildTree(a));
-    _root = _vRoot.render();
-    _container.append(_root);
+    _vRoot.inject(_container, const v.Context(false));
   }
 
   void update() {
     final newVroot = new v.Element(0, 'div', vdomBuildTree(b));
-    _vRoot.sync(newVroot);
+    _vRoot.sync(newVroot, const v.Context(false));
   }
 
   void setup() {
   }
 
   void teardown() {
-    _root.remove();
+    _vRoot.ref.remove();
   }
 }

@@ -6,3 +6,8 @@ dependencies:
   vdom: '>=0.4.0'
   liquid:
     git: git@github.com:localvoid/liquid.git
+dependency_overrides:
+  vdom:
+    path: ../vdom
+  liquid:
+    path: ../liquid
