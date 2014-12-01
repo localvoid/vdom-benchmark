@@ -10,9 +10,9 @@ List<v.Node> vdomBuildTree(List<g.Node> nodes) {
   for (var i = 0; i < nodes.length; i++) {
     final n = nodes[i];
     if (n.children != null) {
-      children.add(new v.Element(n.key, 'div', vdomBuildTree(n.children)));
+      children.add(new v.Element(n.key, 'div')(vdomBuildTree(n.children)));
     } else {
-      children.add(new v.Element(n.key, 'span', [new v.Text(0, n.key.toString())]));
+      children.add(new v.Element(n.key, 'span')([new v.Text(0, n.key.toString())]));
     }
   }
   return children;
@@ -28,13 +28,13 @@ class Benchmark extends BenchmarkBase {
   Benchmark(this.a, this.b, this._container) : super('VDom');
 
   void render() {
-    _vRoot = new v.Element(0, 'div', vdomBuildTree(a));
-    _vRoot.inject(_container, const v.Context(false));
+    _vRoot = new v.Element(0, 'div')(vdomBuildTree(a));
+    v.inject(_vRoot, _container, const v.Context(false));
   }
 
   void update() {
-    final newVroot = new v.Element(0, 'div', vdomBuildTree(b));
-    _vRoot.sync(newVroot, const v.Context(false));
+    final newVroot = new v.Element(0, 'div')(vdomBuildTree(b));
+    _vRoot.update(newVroot, const v.Context(false));
   }
 
   void setup() {

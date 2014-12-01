@@ -3,11 +3,12 @@ description: A sample web application
 dependencies:
   browser: any
   charted: any
-  vdom: '>=0.4.0'
-  liquid:
-    git: git@github.com:localvoid/liquid.git
-dependency_overrides:
   vdom:
-    path: ../vdom
+    git: git://github.com/localvoid/vdom.git
   liquid:
-    path: ../liquid
+    git: git://github.com/localvoid/liquid.git
+transformers:
+- $dart2js:
+    checked: false
+    minify: true
+    commandLineOptions: ['--trust-type-annotations', '--trust-primitives']
