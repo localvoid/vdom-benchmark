@@ -64,7 +64,7 @@ Benchmark.prototype.tearDown = function() {
 };
 
 Benchmark.prototype.render = function() {
-  this._cache=b.createNode({component: NodeComponent, data: new Node(0, false, this._a)});
+  this._cache=b.createNode({component: NodeComponent, data: new Node(0, false, this._a)}, null);
   this._container.appendChild(this._cache.element);
 };
 
