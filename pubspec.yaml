@@ -5,8 +5,6 @@ dependencies:
   charted: any
   vdom:
     git: git://github.com/localvoid/vdom.git
-  liquid:
-    git: git://github.com/localvoid/liquid.git
 transformers:
 - $dart2js:
     checked: false
