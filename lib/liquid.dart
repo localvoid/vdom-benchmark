@@ -3,13 +3,13 @@ library vdom_benchmark.liquid;
 import 'dart:html' as html;
 import 'package:vdom_benchmark/benchmark.dart';
 import 'package:vdom_benchmark/generator.dart' as g;
-import 'package:vdom/vdom.dart' as v;
+import 'package:liquid/vdom.dart' as v;
 import 'package:liquid/liquid.dart';
 
 class NodeComponent extends Component<html.DivElement> {
   g.Node node;
 
-  VRoot build() {
+  v.VRoot build() {
     final result = [];
     final children = node.children;
     if (children != null) {
@@ -22,7 +22,7 @@ class NodeComponent extends Component<html.DivElement> {
         }
       }
     }
-    return new VRoot()(result);
+    return new v.VRoot()(result);
   }
 
   String toString() => 'Node: [$node]';
@@ -33,12 +33,12 @@ class LeafComponent extends Component<html.SpanElement> {
 
   void create() { element = new html.SpanElement(); }
 
-  VRoot build() => vRoot()([new v.Text(node.key.toString(), key: 0)]);
+  v.VRoot build() => v.root()([new v.VText(node.key.toString(), key: 0)]);
 
   String toString() => 'Leaf: [${node.key}]';
 }
 
-class VNode extends VComponentBase {
+class VNode extends v.VComponentBase {
   g.Node node;
 
   VNode(Object key, this.node) : super(key);
@@ -55,12 +55,13 @@ class VNode extends VComponentBase {
     super.update(other, context);
     component.node = other.node;
     if (other.node.dirty) {
+      component.dirty = true;
       component.internalUpdate();
     }
   }
 }
 
-class VLeaf extends VComponentBase {
+class VLeaf extends v.VComponentBase {
   g.Node node;
 
   VLeaf(Object key, this.node) : super(key);
@@ -77,6 +78,7 @@ class VLeaf extends VComponentBase {
     super.update(other, context);
     component.node = other.node;
     if (other.node.dirty) {
+      component.dirty = true;
       component.internalUpdate();
     }
   }
@@ -87,12 +89,13 @@ class App extends Component {
 
   set node(List<g.Node> newNodes) {
     nodes = newNodes;
+    dirty = true;
     internalUpdate();
   }
 
 
-  VRoot build() {
-    return new VRoot()([new VNode(0, new g.Node(0, true, nodes))]);
+  v.VRoot build() {
+    return new v.VRoot()([new VNode(0, new g.Node(0, true, nodes))]);
   }
 }
 

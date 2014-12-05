@@ -3,7 +3,7 @@ import 'dart:html' as html;
 import 'dart:js' as js;
 import 'package:vdom_benchmark/benchmark.dart';
 import 'package:vdom_benchmark/generator.dart' as g;
-//import 'package:vdom_benchmark/liquid.dart' as vc;
+import 'package:vdom_benchmark/liquid.dart' as vc;
 import 'package:vdom_benchmark/app.dart';
 
 const contestants = const ['Liquid', 'React', 'Bobril'];
@@ -81,9 +81,9 @@ void main() {
         });
       }
 
-      //html.querySelector('#runLiquidDart').onClick.listen((_) {
-      //  runBenchmark('Liquid', (a, b, c) => new vc.Benchmark(a, b, c).report());
-      //});
+      html.querySelector('#runLiquidDart').onClick.listen((_) {
+        runBenchmark('Liquid', (a, b, c) => new vc.Benchmark(a, b, c).report());
+      });
 
       html.querySelector('#runReactJs').onClick.listen((_) {
         runJsBenchmark('React');

@@ -4,6 +4,7 @@ dependencies:
   browser: any
   charted: any
   vdom: '>=0.7.0 <0.8.0'
+  liquid: '>=0.2.0 <0.3.0'
 transformers:
 - $dart2js:
     checked: false
