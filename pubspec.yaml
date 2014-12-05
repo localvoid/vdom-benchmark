@@ -3,8 +3,7 @@ description: A sample web application
 dependencies:
   browser: any
   charted: any
-  vdom:
-    git: git://github.com/localvoid/vdom.git
+  vdom: '>=0.7.0 <0.8.0'
 transformers:
 - $dart2js:
     checked: false
