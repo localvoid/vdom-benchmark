@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "react": "~0.12.1",
-    "mithril": "~0.1.26",
+    "mithril": "~0.1.28",
     "virtual-dom": "0.0.23",
     "vtree": "0.0.22",
     "vdom": "0.0.22"
