@@ -8,6 +8,7 @@ dom libraries.
 - [Mithril](http://lhorie.github.io/mithril/index.html) (JavaScript)
 - [VirtualDom](https://github.com/Matt-Esch/virtual-dom) (JavaScript)
 - [Bobril](https://github.com/Bobris/Bobril) (TypeScript)
+- [cito.js](https://github.com/joelrich/citojs) (JavaScript)
 
 ## [Run benchmark](http://localvoid.github.io/vdom-benchmark/)
 

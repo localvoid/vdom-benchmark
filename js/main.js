@@ -12,5 +12,8 @@ global.benchmarks = {
   },
   Bobril: function(i) {
     return VDomBenchmark.runBenchmark(require('./src/bobril/dom'), i);
-  }  
+  },
+  Cito: function (i) {
+    return VDomBenchmark.runBenchmark(require('./src/cito/dom'), i);
+  }
 };

@@ -6,7 +6,7 @@ import 'package:vdom_benchmark/generator.dart' as g;
 import 'package:vdom_benchmark/vdom.dart' as vdom;
 import 'package:vdom_benchmark/app.dart';
 
-const contestants = const ['VDom', 'React', 'Mithril', 'VirtualDom', 'Bobril'];
+const contestants = const ['VDom', 'React', 'Mithril', 'VirtualDom', 'Bobril', 'Cito'];
 
 g.Model generateTests() {
   final groups = [];
@@ -115,6 +115,10 @@ void main() {
 
       html.querySelector('#runBobrilJs').onClick.listen((_) {
         runJsBenchmark('Bobril');
+      });
+
+      html.querySelector('#runCitoJs').onClick.listen((_) {
+        runJsBenchmark('Cito');
       });
     });
   });
