@@ -973,7 +973,7 @@ x=[]
 if(b!=null){z.a=b.length
 C.Nm.Ay(y,b)}z.b=""
 if(c!=null&&!c.gl0(c))c.aN(0,new H.Cj(z,y,x))
-return J.jf(a,new H.LI(C.Ka,"$"+z.a+z.b,0,y,x,null))},
+return J.jf(a,new H.LI(C.uS,"$"+z.a+z.b,0,y,x,null))},
 im:function(a,b,c){var z,y,x,w,v,u,t,s,r,q
 z={}
 if(c!=null&&!c.gl0(c)){y=J.x(a)["call*"]
@@ -5187,8 +5187,8 @@ em:{
 "^":"Tp:34;",
 $1:[function(a){var z,y
 z=E.t3()
-y=new F.cy(C.zq,"initial",z,null)
-y.Cf=F.Ar(z.hR.length,5)
+y=new F.cy(C.qb,"initial",z,null)
+y.Cf=F.Ar(z.hR.length,6)
 y.I3("generating-data")
 P.dT(P.k5(0,0,0,0,0,0),null,null).ml(new E.VW(y))},"$1",null,2,0,null,55,"call"]},
 VW:{
@@ -5210,7 +5210,9 @@ H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.N2(x)),w.el),[H.Kp(w,0)]).DN()
 w=J.Vg(document.querySelector("#runVirtualDomJs"))
 H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.uI(x)),w.el),[H.Kp(w,0)]).DN()
 w=J.Vg(document.querySelector("#runBobrilJs"))
-H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.Ve(x)),w.el),[H.Kp(w,0)]).DN()},"$1",null,2,0,null,55,"call"]},
+H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.Ve(x)),w.el),[H.Kp(w,0)]).DN()
+w=J.Vg(document.querySelector("#runCitoJs"))
+H.VM(new W.xC(0,w.J6,w.fA,W.VF(new E.Ka(x)),w.el),[H.Kp(w,0)]).DN()},"$1",null,2,0,null,55,"call"]},
 Nt:{
 "^":"Tp:42;d,e",
 $2:function(a,b){var z=document.querySelector("#running").style
@@ -5282,7 +5284,10 @@ uI:{
 $1:[function(a){this.x.$1("VirtualDom")},"$1",null,2,0,null,55,"call"]},
 Ve:{
 "^":"Tp:34;y",
-$1:[function(a){this.y.$1("Bobril")},"$1",null,2,0,null,55,"call"]}},1],["","",,V,{
+$1:[function(a){this.y.$1("Bobril")},"$1",null,2,0,null,55,"call"]},
+Ka:{
+"^":"Tp:34;z",
+$1:[function(a){this.z.$1("Cito")},"$1",null,2,0,null,55,"call"]}},1],["","",,V,{
 "^":"",
 VQ:[function(a){},"$1","bC",2,0,38],
 wA:[function(a){var z,y
@@ -5762,7 +5767,7 @@ z=document.querySelector("#results-table > thead")
 y=document.querySelector("#results-table > tbody")
 x=document.createElement("tr",null)
 x.appendChild(W.r3("th",null))
-for(w=this.zs,w=H.VM(new H.a7(w,5,0,null),[H.Kp(w,0)]);w.G();){v=w.lo
+for(w=this.zs,w=H.VM(new H.a7(w,6,0,null),[H.Kp(w,0)]);w.G();){v=w.lo
 u=W.r3("th",null)
 u.textContent=v
 x.appendChild(u)}z.appendChild(x)
@@ -5774,7 +5779,7 @@ u=w.insertCell(-1)
 q=W.r3("code",null)
 q.textContent=r
 u.appendChild(q)
-for(p=0;p<5;++p){u=w.insertCell(-1)
+for(p=0;p<6;++p){u=w.insertCell(-1)
 u.toString
 new W.I4(u).h(0,"result")}y.appendChild(w)}}},
 DK:function(){var z,y,x,w,v,u,t,s,r,q,p,o
@@ -5795,7 +5800,7 @@ new W.I4(t).h(0,"panel-body")
 s=document.createElement("table",null)
 s.toString
 new W.I4(s).h(0,"results-chart")
-r=new H.a7(x,5,0,null)
+r=new H.a7(x,6,0,null)
 r.$builtinTypeInfo=[H.Kp(x,0)]
 for(;r.G();){q=r.lo
 p=s.insertRow(-1)
@@ -5813,7 +5818,7 @@ t.appendChild(s)
 v.appendChild(t)
 r.appendChild(v)
 z.appendChild(r)}},
-Qj:function(a,b,c){var z=H.TK(this.zs,a,0,5)
+Qj:function(a,b,c){var z=H.TK(this.zs,a,0,6)
 J.kW(this.Cf.Rn[b],z,c)
 this.rT(b)},
 rT:function(a){var z,y,x,w,v
@@ -6322,11 +6327,11 @@ C.hQ=function(hooks) {
 C.Vu=function(_, letter) { return letter.toUpperCase(); }
 C.l0=I.uL(["panel","panel-default"])
 C.oQ=I.uL([0,1])
+C.qb=I.uL(["VDom","React","Mithril","VirtualDom","Bobril","Cito"])
 C.xD=I.uL([])
-C.zq=I.uL(["VDom","React","Mithril","VirtualDom","Bobril"])
 C.Sj=I.uL(["svg","xhtml","xlink","xml","xmlns"])
 C.tQ=new H.LP(5,{svg:"http://www.w3.org/2000/svg",xhtml:"http://www.w3.org/1999/xhtml",xlink:"http://www.w3.org/1999/xlink",xml:"http://www.w3.org/XML/1998/namespace",xmlns:"http://www.w3.org/2000/xmlns/"},C.Sj)
-C.Ka=new H.GD("call")
+C.uS=new H.GD("call")
 C.GX=H.Kx('c8')
 init.isHunkLoaded=function(a){return!!$dart_deferred_initializers[a]}
 init.initializeLoadedHunk=function(a){$dart_deferred_initializers[a](xm,$)}
