@@ -10,9 +10,9 @@ List<v.VNode> vdomBuildTree(List<g.Node> nodes) {
   for (var i = 0; i < nodes.length; i++) {
     final n = nodes[i];
     if (n.children != null) {
-      children.add(new v.VElement('div', key: n.key)(vdomBuildTree(n.children)));
+      children.add(new v.VHtmlGenericElement('div', key: n.key)(vdomBuildTree(n.children)));
     } else {
-      children.add(new v.VElement('span', key: n.key)([new v.VText(n.key.toString(), key: n.key)]));
+      children.add(new v.VHtmlGenericElement('span', key: n.key)([new v.VText(n.key.toString(), key: n.key)]));
     }
   }
   return children;
@@ -23,12 +23,12 @@ class Benchmark extends BenchmarkBase {
   List<g.Node> b;
   html.Element _container;
 
-  v.VElement _vRoot;
+  v.VHtmlGenericElement _vRoot;
 
   Benchmark(this.a, this.b, this._container) : super('VDom');
 
   void render() {
-    _vRoot = new v.VElement('div')(vdomBuildTree(a));
+    _vRoot = new v.VHtmlGenericElement('div')(vdomBuildTree(a));
     _vRoot.create(const v.Context(true));
     _container.append(_vRoot.ref);
     _vRoot.attached();
@@ -36,7 +36,7 @@ class Benchmark extends BenchmarkBase {
   }
 
   void update() {
-    final newVroot = new v.VElement('div')(vdomBuildTree(b));
+    final newVroot = new v.VHtmlGenericElement('div')(vdomBuildTree(b));
     _vRoot.update(newVroot, const v.Context(true));
   }
 
