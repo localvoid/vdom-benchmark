@@ -3,7 +3,7 @@ description: A sample web application
 dependencies:
   browser: any
   charted: any
-  vdom: '>=0.8.0 <0.9.0'
+  vdom: '>=0.8.2 <0.9.0'
   liquid: '>=0.3.0 <0.4.0'
 transformers:
 - liquid
