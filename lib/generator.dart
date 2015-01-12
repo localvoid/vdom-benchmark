@@ -64,6 +64,18 @@ typedef void TreeTransformer(List<Node> children);
 
 void skip(List<Node> children) {}
 
+void magic(List<Node> children) {
+  if (children.length >= 4) {
+    children.removeLast();
+    children.removeAt(0);
+    final first = children.first;
+    final last = children.last;
+    children[0] = last;
+    children[children.length - 1] = first;
+  }
+
+}
+
 void reverse(List<Node> children) {
   final copy = new List.from(children);
   children.clear();
@@ -198,6 +210,7 @@ void markDirtyOne(List<Node> children, int i) {
 var random = new math.Random(0);
 
 List<TreeTransformer> transformers = [
+    magic,
     reverse,
     (c) => shuffle(c, random),
     (c) => removeLast(c, 1),
@@ -214,6 +227,7 @@ List<TreeTransformer> transformers = [
     swapMiddle];
 
 List<String> transformerNames = [
+    'magic',
     'reverse',
     'shuffle',
     'removeLast(1)',
