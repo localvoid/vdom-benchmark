@@ -8,6 +8,7 @@ var buffer = require('vinyl-buffer');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var browserify = require('browserify');
+var deploy = require('gulp-gh-pages');
 
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
@@ -59,6 +60,11 @@ gulp.task('serve', ['default'], function() {
   gulp.watch('./web/config.js', ['config']);
   gulp.watch('./web/generator.js', ['generator']);
   gulp.watch('./web/**/*.html', ['html']);
+});
+
+gulp.task('deploy', ['default'], function () {
+  return gulp.src(DEST + '/**/*')
+    .pipe(deploy());
 });
 
 gulp.task('default', ['config', 'generator', 'html']);
