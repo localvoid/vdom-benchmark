@@ -3,20 +3,20 @@ benchmarkConfig({
   "description": "Comparing performance of the diff/patch operations in various virtual dom libraries.",
   "data": {
     "type": "script",
-    "url": "https://localvoid.github.com/vdom-benchmark/generator.js"
+    "url": "http://localvoid.github.io/vdom-benchmark/generator.js"
   },
   "contestants": [
     {
       "name": "kivi",
-      "benchmarkUrl": "https://localvoid.github.com/vdom-benchmark-kivi/"
+      "benchmarkUrl": "http://localvoid.github.io/vdom-benchmark-kivi/"
     },
     {
       "name": "cito.js",
-      "benchmarkUrl": "https://localvoid.github.com/vdom-benchmark-cito/"
+      "benchmarkUrl": "http://localvoid.github.io/vdom-benchmark-cito/"
     },
     {
       "name": "Bobril",
-      "benchmarkUrl": "https://localvoid.github.com/vdom-benchmark-bobril/"
+      "benchmarkUrl": "http://localvoid.github.io/vdom-benchmark-bobril/"
     }
   ]
 });
