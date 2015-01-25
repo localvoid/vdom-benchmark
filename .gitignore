@@ -1,30 +1,9 @@
-# https://www.dartlang.org/tools/private-files.html
+node_modules
 
-pubspec.lock
+build
 
-build/
-packages
-.pub/
-
-.buildlog
-*.js_
-*.js.deps
-*.js.map
-*.dart.js
-
-# Eclipse
-.project
-
-# IntelliJ
-*.iml
-*.ipr
-*.iws
-.idea/
+# Tern
+.tern-port
 
 # Mac
 .DS_Store
-
-# JavaScript
-web/js/*
-node_modules/
-.tern-port
