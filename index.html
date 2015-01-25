@@ -1,146 +1,19 @@
 <!DOCTYPE html>
-<html ng-app>
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Virtual Dom benchmark</title>
+  <title>Virtual DOM Benchmark</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <style>
-  #buttons {
-    position: relative;
-  }
-
-  #running {
-    z-index: 10;
-    position: absolute;
-    background: rgba(255, 255, 255, 0.7);
-    top: 0; bottom: 0;
-    left: 0; right: 0;
-  }
-
-  .results-chart {
-    width: 100%;
-  }
-
-  .results-chart .name {
-    width: 100px;
-    padding-right: 10px;
-    text-align: right;
-    border-right: 1px solid #333;
-  }
-
-  .results-chart .bar {
-    display: inline-block;
-    height: 12px;
-  }
-  .results-chart .render-time {
-    background: #428bca;
-  }
-  .results-chart .update-time {
-    background: #5cb85c;
-  }
-  </style>
 </head>
 <body>
   <div class="jumbotron">
     <div class="container">
       <h1>Virtual DOM Benchmark</h1>
       <p>Comparing performance of the diff/patch operations in various virtual dom libraries.</p>
-      <p><a href="https://github.com/localvoid/vdom-benchmark">Source code</a></p>
+      <p>Virtual DOM Benchmark is moved to <a href="http://localvoid.github.io/benchmark-aggregator/?cfg=http://localvoid.github.io/vdom-benchmark/config.js">the new location</a>.</p>
     </div>
   </div>
-  <div class="container">
-    <div id="state-initial">
-      <div class="row">
-        <p>System requirements: 2Gb memory (some libraries consume too much memory)</p>
-        <button class="btn btn-danger" id="startButton">Proceed</button>
-      </div>
-    </div>
-
-    <div id="state-generating-data" style="display: none">
-      <div class="row">
-        <p>Generating benchmark data...</p>
-      </div>
-    </div>
-
-    <div id="state-ready" style="display: none">
-
-      <div class="row" id="buttons">
-        <div id="running" style="display: none"></div>
-        <div class="col-md-2">
-          <h2><a href="https://github.com/localvoid/vdom">VDom</a> <small>0.8.2</small> <small><mark>Dart</mark></small></h2>
-          <p><a href="https://github.com/localvoid/vdom-benchmark/blob/master/lib/vdom.dart">Source Code</a></p>
-          <button class="btn btn-default" id="runVDomDart">Run</button>
-        </div>
-        <div class="col-md-2">
-          <h2><a href="http://facebook.github.io/react/">React</a> <small>0.12.2</small></h2>
-          <p><a href="https://github.com/localvoid/vdom-benchmark/blob/master/js/src/react/dom.js">Source Code</a></p>
-          <button class="btn btn-default" id="runReactJs">Run</button>
-        </div>
-        <div class="col-md-2">
-          <h2><a href="http://lhorie.github.io/mithril/index.html">Mithril</a> <small>0.1.28</small></h2>
-          <p><a href="https://github.com/localvoid/vdom-benchmark/blob/master/js/src/mithril/dom.js">Source Code</a></p>
-          <button class="btn btn-default" id="runMithrilJs">Run</button>
-        </div>
-        <div class="col-md-2">
-          <h2><a href="https://github.com/Matt-Esch/virtual-dom">VirtualDom</a> <small>1.0.0</small></h2>
-          <p><a href="https://github.com/localvoid/vdom-benchmark/blob/master/js/src/virtual-dom/dom.js">Source Code</a></p>
-          <button class="btn btn-default" id="runVirtualDomJs">Run</button>
-        </div>
-        <div class="col-md-2">
-          <h2><a href="https://github.com/Bobris/Bobril">Bobril</a> <small>0.0.1</small></h2>
-          <p><a href="https://github.com/localvoid/vdom-benchmark/blob/master/js/src/bobril/dom.js">Source Code</a></p>
-          <button class="btn btn-default" id="runBobrilJs">Run</button>
-        </div>
-        <div class="col-md-2">
-          <h2><a href="https://github.com/joelrich/citojs">cito.js</a> <small>0.0.1</small></h2>
-          <p><a href="https://github.com/localvoid/vdom-benchmark/blob/master/js/src/cito/dom.js">Source Code</a></p>
-          <button class="btn btn-default" id="runCitoJs">Run</button>
-        </div>
-      </div>
-
-      <hr />
-
-      <div class="row">
-        <div id="benchmark-data"></div>
-      </div>
-
-      <div class="row">
-
-        <div class="panel panel-default">
-          <div class="panel-heading">Results:</div>
-          <div class="panel-body">
-            <p>Each test generates tag tree and performs different transformations.</p>
-            <p>For example, <code>[100, 50] [removeMiddle(1), skip]</code> generates 100 nodes, each node have 50 childrens. Transformation applied only to the top-level childrens, it removes one node in the middle.</p>
-            <p>Results are displayed in the format: initial rendering time / diff and patch time</p>
-          </div>
-
-          <table class="table" id="results-table">
-            <thead></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-
-      <div id="results-charts">
-      </div>
-
-    </div>
-  </div>
-
-  <script src="js/main.js"></script>
-  <script async type="application/dart" src="index.dart"></script>
-  <script async src="packages/browser/dart.js"></script>
-
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-39594570-2', 'auto');
-  ga('send', 'pageview');
-  </script>
 </body>
 </html>
 
