@@ -17,6 +17,18 @@ benchmarkConfig({
     {
       "name": "Bobril",
       "benchmarkUrl": "http://localvoid.github.io/vdom-benchmark-bobril/"
+    },
+    {
+      "name": "React",
+      "benchmarkUrl": "http://localvoid.github.io/vdom-benchmark-react/"
+    },
+    {
+      "name": "virtual-dom",
+      "benchmarkUrl": "http://localvoid.github.io/vdom-benchmark-virtual-dom/"
+    },
+    {
+      "name": "mithril",
+      "benchmarkUrl": "http://localvoid.github.io/vdom-benchmark-mithril/"
     }
   ]
 });
